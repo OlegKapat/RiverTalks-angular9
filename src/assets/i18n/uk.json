@@ -1,0 +1,35 @@
+{
+	"About": "Про нас",
+	"Authorization": "Авторизація",
+	"Contacts": "Контакти",
+	"Email address": "Email адреса",
+	"Enter email": "Введіть email",
+	"Enter login": "Введіть логін",
+	"Enter login or email or phone": "Введіть логін або email або телефон",
+	"Enter name": "Введіть им'я",
+	"Enter password": "Введіть пароль",
+	"Enter phone": "Введіть телефон",
+	"F": {
+		"A": {
+			"Q": {
+				"": "F.A.Q."
+			}
+		}
+	},
+	"Groups": "Групи",
+	"Login": "Логін",
+	"Login or Email or Phone": "Логін або Email або Телефон",
+	"Login!": "Увійти!",
+	"Name": "Им'я",
+	"Password": "Пароль",
+	"Phone": "Телефон",
+	"Privacy policy": "Політика конфіденційності",
+	"Profile": "Профіль",
+	"Register!": "Зарегиструватися!",
+	"Registration": "Реєстрація",
+	"Restore password": "Відновити пароль",
+	"Restore password!": "Відновити пароль!",
+	"River Talks Messenger": "River Talks Messenger",
+	"Settings": "Налаштування",
+	"Sign out": "Вихід"
+}

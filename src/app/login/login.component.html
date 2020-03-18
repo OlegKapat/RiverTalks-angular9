@@ -1,0 +1,30 @@
+<div class="row" [hidden]="authService.loader">
+  <div class="col-lg-3">
+  </div>
+  <div class="col-lg-6">
+    <form class="form-login" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      <h3 class="h3 mb-3 font-weight-normal text-center">{{ 'Authorization' | translate }}</h3>
+      <div class="alert alert-danger {{authService.lastError ? '' : 'hidden'}}">{{authService.lastError}}</div>
+      <div class="form-group">
+        <label>{{ 'Login or Email or Phone' | translate }}</label>
+        <input type="text" class="form-control" formControlName="login" placeholder="{{ 'Enter login or email or phone' | translate }}" required>
+      </div>
+      <div class="form-group">
+        <label>{{ 'Password' | translate }}</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="{{ 'Enter password' | translate }}">
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <a routerLink="/register" routerLinkActive="active">{{ 'Registration' | translate }}</a><br/>
+          <a routerLink="/restore-password" routerLinkActive="active">{{ 'Restore password' | translate }}</a><br/>
+        </div>
+        <div class="col-lg-6">
+          <button type="submit" class="btn btn-block btn-primary">{{ 'Login!' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-lg-3">
+    <app-language-switcher></app-language-switcher>
+  </div>
+</div>
