@@ -8,6 +8,7 @@ import {RestorePasswordComponent} from './restore-password/';
 import {AuthService} from './_services';
 import {LogoutComponent} from "./logout";
 import {PageComponent} from "./page";
+import {AuthGuard} from './_services/authguard'
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -15,7 +16,7 @@ const routes: Routes = [
   {path: 'logout', component: LogoutComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'restore-password', component: RestorePasswordComponent},
-  {path:'home',component:HomeComponent},
+  {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
   // otherwise redirect to home
   {path: '**', redirectTo: 'LoginComponent'}
 ];

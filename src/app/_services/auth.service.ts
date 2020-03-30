@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Injectable, OnInit} from '@angular/core';
+import { Router} from '@angular/router';
 import {User} from '../_models';
 import {ApiService} from './api.service';
 import {Subject} from "rxjs";
@@ -8,14 +8,19 @@ import {TranslateService} from "@ngx-translate/core";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements CanActivate {
+export class AuthService implements OnInit{
 
   public loaderS: Subject<boolean>;
   public loader: boolean = true;
+  private token=null;
+  private authToken$:Subject<boolean>
   public currentUserS: Subject<User>;
   public currentUser: User;
   public lastErrorS: Subject<String>;
   public lastError: String;
+  public auth$:Subject<boolean>;
+ 
+
 
   constructor(
     private router: Router,
@@ -25,14 +30,17 @@ export class AuthService implements CanActivate {
     this.loaderS = new Subject<boolean>();
     this.currentUserS = new Subject<User>();
     this.lastErrorS = new Subject<String>();
+    this.auth$=new Subject<boolean>();
+
     this.loaderS.subscribe(loader => {
       this.loader = loader;
       console.log(loader);
     });
-    this.apiService.on<any>("user/login").subscribe(data => {
+    this.apiService.on<any>("user/login").subscribe(data =>{
       this.loaderS.next(false);
       this.processUser(data);
     });
+   
     this.apiService.on<any>("user/register").subscribe(data => {
       this.processUser(data);
     });
@@ -43,7 +51,7 @@ export class AuthService implements CanActivate {
       this.currentUserS.next(null);
       localStorage.removeItem('auth_token');
       this.lastErrorS.next(null);
-      router.navigate(['/']);
+      this.router.navigate(['/']);
     });
     this.lastErrorS.subscribe(error => {
       this.lastError = error;
@@ -53,10 +61,8 @@ export class AuthService implements CanActivate {
     })
     this.currentUserS.subscribe(user => {
       this.currentUser = user;
-      console.log(this.currentUser);
-
       if (user && user.id && this.router.url.split('?')[0] === "/login") {
-        router.navigate(['/home'])
+        this.router.navigate(['/home'])
       }
     })
     this.apiService.status.subscribe(isConnected => {
@@ -65,11 +71,17 @@ export class AuthService implements CanActivate {
       }
     });
   }
+  ngOnInit(){
 
+  }
+  setToken(token:string){
+     this.token=token;
+  }
   processUser(data) {
     if (data.status) {
       this.currentUserS.next(data.user);
       localStorage.setItem('auth_token', data.auth_token);
+      this.setToken(data.auth_token)
       this.translate.use(data.user.language);
       this.lastErrorS.next(null);
     } else {
@@ -101,6 +113,12 @@ export class AuthService implements CanActivate {
     });
   }
 
+ isAuthenticated(){
+    if(this.token){
+      this.authToken$.next(true)
+    }
+ }
+
   register(user: User) {
     this.lastErrorS.next(null);
     this.apiService.send({
@@ -122,15 +140,6 @@ export class AuthService implements CanActivate {
     }
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.currentUser) {
-      // authorised so return true
-      return true;
-    }
 
-    // not logged in so redirect to login page with the return url
-    this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
-    return false;
-  }
 
 }

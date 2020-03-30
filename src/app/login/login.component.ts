@@ -26,8 +26,11 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this.authService.login(this.loginForm.value);
-   
+    this.authService.login(this.loginForm.value)
   }
-
+  isAuthentificated(){
+    if(this.authService.isAuthenticated){
+      this.router.navigate(['/home'])
+    }
+  }
 }

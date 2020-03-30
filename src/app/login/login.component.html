@@ -19,7 +19,7 @@
           <a routerLink="/restore-password" routerLinkActive="active">{{ 'Restore password' | translate }}</a><br/>
         </div>
         <div class="col-lg-6">
-          <button type="submit" class="btn btn-block btn-primary">{{ 'Login!' | translate }}</button>
+          <button type="submit" (click)="isAuthentificated()" class="btn btn-block btn-primary">{{ 'Login!' | translate }}</button>
         </div>
       </div>
     </form>

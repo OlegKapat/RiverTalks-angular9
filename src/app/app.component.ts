@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(){
       this.apiService.status.subscribe(isConnected => {
+
       if (isConnected) {
         this.apiService.send({
           "method": "language",

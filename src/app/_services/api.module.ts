@@ -1,7 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
-import {ApiService, config, WebSocketConfig} from './api.service';
+import {WebSocketConfig} from '../_models/socket'
+import {ApiService, config} from './api.service';
 
 
 @NgModule({

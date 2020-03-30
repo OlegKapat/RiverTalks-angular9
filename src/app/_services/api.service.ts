@@ -1,29 +1,14 @@
 import {Inject, Injectable, InjectionToken, OnDestroy} from '@angular/core';
 import {interval, Observable, Observer, Subject, SubscriptionLike} from 'rxjs';
 import {distinctUntilChanged, filter, map, share, takeWhile} from 'rxjs/operators';
-import {WebSocketSubject, WebSocketSubjectConfig} from 'rxjs/webSocket';
+import { IWebsocketService, IWsMessage, WebSocketConfig } from '../_models/socket';
+import { WebSocketSubjectConfig, WebSocketSubject } from 'rxjs/webSocket';
+
 // import {IWebsocketService, IWsMessage, WebSocketConfig} from './websocket.interfaces';
 // import {config} from './websocket.config';
 
 
-export interface IWebsocketService {
-  on<T>(method: string): Observable<T>;
 
-  send(method: string, data: any): void;
-
-  status: Observable<boolean>;
-}
-
-export interface WebSocketConfig {
-  url: string;
-  reconnectInterval?: number;
-  reconnectAttempts?: number;
-}
-
-export interface IWsMessage<T> {
-  method: string;
-  data: T;
-}
 
 export const config: InjectionToken<string> = new InjectionToken('websocket');
 
@@ -106,7 +91,9 @@ export class ApiService implements IWebsocketService, OnDestroy {
     this.websocket$ = new WebSocketSubject(this.config);
 
     this.websocket$.subscribe(
-      (message) => this.wsMessages$.next(message),
+      (message) => {this.wsMessages$.next(message)
+
+      },
       (error: Event) => {
         if (!this.websocket$) {
           // run reconnect if errors
@@ -136,8 +123,6 @@ export class ApiService implements IWebsocketService, OnDestroy {
         }
       });
   }
-
-
   /*
   * on message event
   * */
@@ -150,17 +135,17 @@ export class ApiService implements IWebsocketService, OnDestroy {
       );
     }
   }
-
-
   /*
   * on message to server
   * */
-  public send(data: any = {}): void {
-    if (this.isConnected) {
-      this.websocket$.next(data);
-    } else {
-      console.error('Send error!');
-    }
+ public send(data: any = {}): void {
+  if (this.isConnected) {
+    this.websocket$.next(data);
+  } else {
+    console.error('Send error!');
   }
+}
+
+
 
 }
