@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 export interface IWebsocketService {
     on<T>(method: string): Observable<T>;
   
-    send(method: string, data: any): void;
+    send(data: any,method:string ): void;
   
     status: Observable<boolean>;
   }

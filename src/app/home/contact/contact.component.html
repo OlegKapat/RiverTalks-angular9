@@ -1,0 +1,10 @@
+<div class="gavatar">
+    <p>MR</p>
+    <ul *ngIf="allcontacts$ | async as contacts">
+        <li *ngFor="let contact of contacts.contacts">
+            <span>{{contact.status}}</span>
+            <span>{{contact.name}}</span>
+        </li>
+    </ul>
+</div>
+

@@ -3,10 +3,7 @@ import {ApiService, AuthService} from "./_services";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 
-export interface IMessage {
-  id: number;
-  text: string;
-}
+
 
 @Component({
   selector: 'app-root',
@@ -15,7 +12,7 @@ export interface IMessage {
 })
 export class AppComponent implements OnInit {
   title = 'web';
-
+  
   constructor(
     public translate: TranslateService,
     public authService: AuthService,

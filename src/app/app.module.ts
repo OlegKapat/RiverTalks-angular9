@@ -29,6 +29,8 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from "@angular/material/icon";
 import {MatCardModule} from '@angular/material/card';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MessagesComponent } from './home/messages/messages.component';
+import { ContactComponent } from './home/contact/contact.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
@@ -42,7 +44,9 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     RestorePasswordComponent,
     LogoutComponent,
     PageComponent,
-    LanguageSwitcherComponent
+    LanguageSwitcherComponent,
+    MessagesComponent,
+    ContactComponent
 
   ],
   imports: [

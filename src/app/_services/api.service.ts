@@ -37,7 +37,7 @@ export class ApiService implements IWebsocketService, OnDestroy {
 
   constructor(@Inject(config) private wsConfig: WebSocketConfig) {
     this.wsMessages$ = new Subject<IWsMessage<any>>();
-
+    this.websocket$= new WebSocketSubject<IWsMessage<any>>('12')
     this.reconnectInterval = wsConfig.reconnectInterval || 5000; // pause between connections
     this.reconnectAttempts = wsConfig.reconnectAttempts || 10; // number of connection attempts
 
@@ -92,7 +92,7 @@ export class ApiService implements IWebsocketService, OnDestroy {
 
     this.websocket$.subscribe(
       (message) => {this.wsMessages$.next(message)
-
+           
       },
       (error: Event) => {
         if (!this.websocket$) {
@@ -126,11 +126,12 @@ export class ApiService implements IWebsocketService, OnDestroy {
   /*
   * on message event
   * */
-  public on<T>(method: string): Observable<T> {
+  public on<T>(method: string): Observable<T> { 
     if (method) {
       // @ts-ignore
       return this.wsMessages$.pipe(
-        filter((message: IWsMessage<T>) => message.method === method),
+        filter((message: IWsMessage<T>) => message.method === method
+        ),
         map((message: IWsMessage<T>) => message)
       );
     }
@@ -144,8 +145,7 @@ export class ApiService implements IWebsocketService, OnDestroy {
   } else {
     console.error('Send error!');
   }
+  
 }
-
-
 
 }

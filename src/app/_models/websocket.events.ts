@@ -1,8 +1,11 @@
-export  const WS = {
+export const Events = {
     ON: {
-        MESSAGES: 'messages'
+        MESSAGES: 'messages',
+        COUNTER: 'counter',
+        UPDATE_TEXTS: 'update-texts'
     },
     SEND: {
-        TEXT: 'text'
+        SEND_TEXT: 'set-text',
+        REMOVE_TEXT: 'remove-text'
     }
 };

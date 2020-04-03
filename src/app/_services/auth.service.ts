@@ -18,10 +18,8 @@ export class AuthService implements OnInit{
   public currentUser: User;
   public lastErrorS: Subject<String>;
   public lastError: String;
-  public auth$:Subject<boolean>;
  
-
-
+ 
   constructor(
     private router: Router,
     private apiService: ApiService,
@@ -30,8 +28,7 @@ export class AuthService implements OnInit{
     this.loaderS = new Subject<boolean>();
     this.currentUserS = new Subject<User>();
     this.lastErrorS = new Subject<String>();
-    this.auth$=new Subject<boolean>();
-
+  
     this.loaderS.subscribe(loader => {
       this.loader = loader;
       console.log(loader);
@@ -60,11 +57,13 @@ export class AuthService implements OnInit{
       }
     })
     this.currentUserS.subscribe(user => {
-      this.currentUser = user;
+      this.currentUser = user
+      
       if (user && user.id && this.router.url.split('?')[0] === "/login") {
         this.router.navigate(['/home'])
       }
     })
+
     this.apiService.status.subscribe(isConnected => {
       if (isConnected) {
         this.autoLogin();

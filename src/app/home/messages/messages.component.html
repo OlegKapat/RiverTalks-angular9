@@ -1,0 +1,8 @@
+<div class="texts">
+    <ul *ngIf="texts$ | async as texts">
+        <li *ngFor="let text of texts.messages; let i = index;">
+            {{ text }}
+            <span class="remove" (click)="removeText(i)">x</span>
+        </li>
+    </ul>
+</div>

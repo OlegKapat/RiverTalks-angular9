@@ -79,8 +79,7 @@
               </div>
             </mat-sidenav>
                     <mat-sidenav-content>
-                        <h1 style="color: black;">Виводятся користувачі</h1>
-                        <p>{{alluser}}</p>
+                        <app-contact></app-contact>
                     </mat-sidenav-content>
           </mat-sidenav-container>
 		</div>
@@ -205,8 +204,8 @@
             <mat-sidenav-content>
               <section class="sec">
                 <div class="convHistory userBg">
-                  <!-- сообщения -->
-                  {{messageContent}}
+                  <!-- сообщения подключить после логики -->
+                   <app-messages></app-messages>
                 </div>
                   <!--отправка сообщений-->
                   <div class="replyBar">
@@ -250,7 +249,7 @@
                         <i class="material-icons">face</i>
                       </button>
 
-                        <button (click)="sendMessage(text.value)" class="toolButtons audio" *ngIf="show; else mic" >
+                        <button type="button" (click)="sendMessage(text.value)" class="toolButtons audio" *ngIf="show; else mic" >
                           <i  class="material-icons arrow">near_me</i>
                         </button>
 
