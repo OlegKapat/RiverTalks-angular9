@@ -1,8 +1,18 @@
 <div class="texts">
     <ul *ngIf="texts$ | async as texts">
-        <li *ngFor="let text of texts.messages; let i = index;">
-            {{ text }}
-            <span class="remove" (click)="removeText(i)">x</span>
+      <li *ngFor="let text of texts.messages; let i = index;">
+        <a (click)="getMessage(text.message.id)">
+            <div class="item">
+            <div class="message">
+                {{ text.text }}      
+            </div>
+            <div class="time">
+                <span>{{text.updated | date:'hh:mm' }} 	</span>
+                <i class="material-icons">done_all</i>
+            </div>
+        </div>
+    </a>
+            <!-- <span class="remove" (click)="removeText(i)">x</span> -->
         </li>
     </ul>
 </div>

@@ -18,7 +18,6 @@ import {environment} from '../environments/environment';
 import {LogoutComponent} from './logout/logout.component';
 import {PageComponent} from './page/page.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatDialogModule} from "@angular/material/dialog";
 import {MatButton, MatButtonModule} from "@angular/material/button";
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { MatSliderModule } from '@angular/material/slider';
@@ -28,9 +27,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from "@angular/material/icon";
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MessagesComponent } from './home/messages/messages.component';
 import { ContactComponent } from './home/contact/contact.component';
+import {SearchPipe} from './_services/shared/pipes/search.pipe';
+import { GroupComponent } from './home/group/group.component';
+import { LeftSideCardComponent } from './home/left-side-card/left-side-card.component';
+
 
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
@@ -46,7 +50,10 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     PageComponent,
     LanguageSwitcherComponent,
     MessagesComponent,
-    ContactComponent
+    ContactComponent,
+    SearchPipe,
+    GroupComponent,
+    LeftSideCardComponent
 
   ],
   imports: [
@@ -62,6 +69,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     MatIconModule,
     MatInputModule,
     MatCardModule,
+    MatDialogModule,
     MatSlideToggleModule,
     TranslateModule.forRoot({
       loader: {

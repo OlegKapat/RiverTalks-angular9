@@ -1,5 +1,5 @@
 import { ApiService } from './../_services/api.service';
-import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, AfterViewInit, ViewEncapsulation} from '@angular/core';
 import {AuthService, MessageService} from "../_services";
 import {MatDialog} from "@angular/material/dialog";
 import {ThemePalette} from '@angular/material/core';
@@ -13,7 +13,8 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+ 
 })
 export class HomeComponent implements OnInit,AfterViewInit {
    opened=false;
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit,AfterViewInit {
    disabled = false;
    checked=true;
    show=false;
-  
+   searchfield="";
    messageContent:string;
    messageList:string[] = [];
    color: ThemePalette = 'primary';
@@ -67,5 +68,6 @@ export class HomeComponent implements OnInit,AfterViewInit {
    }
   
  }
+ 
 }
 

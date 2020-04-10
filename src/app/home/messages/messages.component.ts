@@ -37,4 +37,7 @@ export class MessagesComponent implements OnInit,AfterViewInit {
   public removeText(index: number): void {
     this.apiService.send("message/del");
 }
+getMessage(event){
+
+}
 }

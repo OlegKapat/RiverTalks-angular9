@@ -1,9 +1,18 @@
-<div class="gavatar">
-    <p>MR</p>
-    <ul *ngIf="allcontacts$ | async as contacts">
-        <li *ngFor="let contact of contacts.contacts">
-            <span>{{contact.status}}</span>
-            <span>{{contact.name}}</span>
+<div id="userlist">
+    <ul >
+        <li *ngFor="let contact of contactform | search:searchfield" (click)="getAllMessage(contact.id)">
+            <div class="avatar">
+                <a class="gavatar">
+                    <span *ngIf="initialAvatarText; else image">{{initialAvatarText}}</span>
+                    <ng-template #image>
+                        <img  src="initialAvatarImage">
+                    </ng-template> 
+                </a>
+                <span style="color: black;">{{contact.user.name}}</span>
+            </div>
+             <div class="time">
+                <span>{{contact.updated |  date:'hh:mm' }}</span>
+             </div>    
         </li>
     </ul>
 </div>

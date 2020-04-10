@@ -1,0 +1,21 @@
+li{
+    list-style-type: none;
+    margin-top: 5px;
+    color: black;
+    padding: 5px;
+}
+.message{
+    padding:10px;
+}
+.item{
+    background-color: white;
+    height: auto;
+    width:70%;
+    border-radius: 5px;
+}
+.time{
+  
+    margin-left:90%;
+    display: inline-block;
+    margin-right: 3px;
+}

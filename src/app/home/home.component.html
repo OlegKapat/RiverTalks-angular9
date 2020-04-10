@@ -8,78 +8,16 @@
     <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" ></path> />
          </svg>
 			</button>
-			<input class="searchChats" type="search" placeholder="Search..."/>
+			<input class="searchChats" [(ngModel)]="searchfield" type="search" placeholder="Search..."/>
     </header>
 		<div class="chats">
           <mat-sidenav-container class="">
             <h1 style="color: black !important;">Hello</h1>
             <mat-sidenav  mode="over" [(opened)]="opened">
-              <div class="container">
-                <div class="row">
-                  <div col-12>
-                    <section class="menuWrap">
-                      <div class="menu">
-                        <div class="me userBg">
-                          <div class="image"></div>
-                          <div class="myinfo">
-                          <p class="name">Random Name</p>
-                          <p class="phone">+1 12 1234 5678</p>
-                          </div>
-                          <button class="cloud">
-                            <i class="material-icons">bookmark</i>
-                          </button>
-                        </div>
-                        <nav>
-                          <button class="ng">
-                            <i class="material-icons">&#xE8D3;</i>
-                            <span>New Group</span>
-                          </button>
-
-                          <button class="nc">
-                            <i class="material-icons">&#xE0B6;</i>
-
-                            <span>New Channel</span>
-                          </button>
-
-                          <button class="cn">
-                            <i class="material-icons">&#xE851;</i>
-
-                            <span>Contacts</span>
-                          </button>
-
-                          <button class="cl">
-                            <i class="material-icons">&#xE0B0;</i>
-
-                            <span>Calls History</span>
-                          </button>
-
-                          <button class="lo">
-                            <i class="material-icons">settings</i>
-                            <span>Settings</span>
-                          </button>
-
-                          <a>
-                          <button class="faq">
-                            <i class="material-icons">brightness_2</i>
-
-                            <span>Night mode</span>
-                          </button>
-                          </a>
-
-                        </nav>
-
-                        <div class="info">
-                        <p>Telegram Web</p>
-                        <p>Ver 0.0.2 - <a href="https://en.wikipedia.org/wiki/Telegram_(messaging_service)">About</a></p>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
+              <app-left-side-card></app-left-side-card>
             </mat-sidenav>
                     <mat-sidenav-content>
-                        <app-contact></app-contact>
+                        <app-contact [searchfield]="searchfield"></app-contact>
                     </mat-sidenav-content>
           </mat-sidenav-container>
 		</div>

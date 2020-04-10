@@ -53,9 +53,11 @@ export class MessageService implements OnInit{
         method:"message/get",
         from:1,
         status:'new',
-        id:1,
+        id:'',
         "min-id":1,
-        "with-own":true
+        "with-own":true,
+        updated:"21312432",
+        "per-page":"10"
       
       })
     }
@@ -65,6 +67,24 @@ export class MessageService implements OnInit{
         id:1,
         text:"",
         attachments:''
+      })
+    }
+    deleteMessage(){
+      this.apiService.send({
+        method:"message/del",
+        id:1,
+      })
+    }
+    getChatMessage(){
+      this.apiService.send({
+        method:"chat/get",
+        
+      })
+    }
+    chatDelete(){
+      this.apiService.send({
+        method:"chat/del",
+        id:1
       })
     }
 }

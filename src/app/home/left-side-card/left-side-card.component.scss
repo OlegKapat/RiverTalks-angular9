@@ -1,4 +1,6 @@
 
+
+
 body {
 	overflow: hidden;
 	background: #419fd9;
@@ -119,10 +121,10 @@ input[type="checkbox"] {
 	 min-width: 240px;
 	 max-width: 320px;
 	 height: 100%;
-	z-index: 3;
-  display: inline-block;
-   margin-left: 5px;
-   padding: 5px;
+	 z-index: 3;
+     display: inline-block;
+     margin-left: 5px;
+     padding: 5px;
 }
 .menu {
 	// position: relative;
@@ -149,7 +151,7 @@ input[type="checkbox"] {
 	background: #FFF url(http://4.bp.blogspot.com/-BHhUazKytmw/VbCfWPqrOJI/AAAAAAAAB7c/qj6WVX3du-s/s1600/51b91bba5a3fd9b6c8b9c53bc0ab6c65.jpg) no-repeat center;
 	background-size: cover;
 	border-radius: 100%;
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .me .settings {
@@ -170,13 +172,14 @@ input[type="checkbox"] {
 
 .me .cloud {
 	position: absolute;
-	right: 20px;
+	right: 5px;
 	bottom: 15px;
 	width: 40px;
 	height: 40px;
 	color: #FFF;
 	border-radius: 100%;
-	background: rgba(0, 0, 0, 0.09);
+  background: rgba(0, 0, 0, 0.09);
+  
 }
 
 .me .cloud:hover {
@@ -1037,7 +1040,7 @@ hr{
 }
 .phone{
   float: left;
-  margin: 10px;
+  margin: 5px;
   margin-bottom: 10px;
   color: black;
 }
