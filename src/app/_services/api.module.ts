@@ -3,8 +3,6 @@ import {CommonModule} from '@angular/common';
 import {WebSocketConfig} from '../_models/socket'
 import {ApiService, config} from './api.service';
 
-
-
 @NgModule({
   imports: [
     CommonModule
@@ -13,6 +11,7 @@ import {ApiService, config} from './api.service';
   providers: [
     ApiService
   ]
+
 })
 export class ApiModule {
   public static config(wsConfig: WebSocketConfig): ModuleWithProviders {

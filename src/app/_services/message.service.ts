@@ -37,36 +37,37 @@ export class MessageService implements OnInit{
       
     }
   
-    sendMessage(data){
+    sendMessage(message,id){
       // this.lastErrorS.next(null)
       // this.messageTo$.next(data);  
         this.apiService.send({
             method:"message/send",
-            text:data,
-            to:1,
+            text:message,
+            to:id,
             attachments:""
             
         })   
     }
-    getMessage(){
+    getMessage(id){
       this.apiService.send({
         method:"message/get",
-        from:1,
-        status:'new',
+        from:id,
+        status:'new,updated',
         id:'',
-        "min-id":1,
+        "min-id":10,
         "with-own":true,
-        updated:"21312432",
-        "per-page":"10"
+        updated:Date.now,
+       
       
       })
     }
-    updateMessage(){
+    updateMessage(status){
       this.apiService.send({
         method:"message/update",
-        id:1,
+        id:'',
         text:"",
-        attachments:''
+        attachments:'',
+        status_text:status
       })
     }
     deleteMessage(){

@@ -17,7 +17,7 @@
               <app-left-side-card></app-left-side-card>
             </mat-sidenav>
                     <mat-sidenav-content>
-                        <app-contact [searchfield]="searchfield"></app-contact>
+                        <app-contact [searchfield]="searchfield" ></app-contact>
                     </mat-sidenav-content>
           </mat-sidenav-container>
 		</div>
@@ -143,7 +143,7 @@
               <section class="sec">
                 <div class="convHistory userBg">
                   <!-- сообщения подключить после логики -->
-                   <app-messages></app-messages>
+                   <app-messages [messagetext]="messageContent"></app-messages>
                 </div>
                   <!--отправка сообщений-->
                   <div class="replyBar">
@@ -152,7 +152,7 @@
                     </button>
                     <input #text  (click)="showArray()" (keyup.enter)="sendMessage(text.value)"
                     type="text"  class="form-control"  class="replyMessage" 
-                    placeholder="Type your message... | translate"/>
+                    placeholder="Type your message... "/>
 
                     <div class="emojiBar">
                       <div class="emoticonType">

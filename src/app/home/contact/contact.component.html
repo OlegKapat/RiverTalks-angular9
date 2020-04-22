@@ -1,11 +1,12 @@
 <div id="userlist">
     <ul >
-        <li *ngFor="let contact of contactform | search:searchfield" (click)="getAllMessage(contact.id)">
+        <li class="active" *ngFor="let contact of contactform | search:searchfield; let i = index" 
+        (click)="getAllMessage(contact.user_id);setIndex(i)"  [class.active]="selectedIndex === i"  >
             <div class="avatar">
                 <a class="gavatar">
-                    <span *ngIf="initialAvatarText; else image">{{initialAvatarText}}</span>
+                    <span *ngIf="initialAvatarText; else image">{{contact.sign}}</span>
                     <ng-template #image>
-                        <img  src="initialAvatarImage">
+                        <img  [src]="initialAvatarImage">
                     </ng-template> 
                 </a>
                 <span style="color: black;">{{contact.user.name}}</span>

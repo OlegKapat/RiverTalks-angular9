@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -34,6 +35,8 @@ import { ContactComponent } from './home/contact/contact.component';
 import {SearchPipe} from './_services/shared/pipes/search.pipe';
 import { GroupComponent } from './home/group/group.component';
 import { LeftSideCardComponent } from './home/left-side-card/left-side-card.component';
+import { RefDirective } from './_services/shared/directives/ref.directive';
+import { ModalComponent } from './_services/shared/modal/modal.component';
 
 
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
@@ -41,6 +44,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
+  
     AlertComponent,
     HomeComponent,
     LoginComponent,
@@ -53,8 +57,9 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     ContactComponent,
     SearchPipe,
     GroupComponent,
-    LeftSideCardComponent
-
+    LeftSideCardComponent,
+    RefDirective
+    
   ],
   imports: [
     BrowserModule,
@@ -91,7 +96,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [PageComponent]
+  entryComponents: [PageComponent,ModalComponent]
 })
 export class AppModule {
 }

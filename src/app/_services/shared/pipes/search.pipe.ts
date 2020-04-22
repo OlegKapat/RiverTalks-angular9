@@ -6,7 +6,7 @@ import { Contact } from 'src/app/_models/contact';
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(contacts: Contact[],search:string=""): Contact[] {
+  transform(contacts: Contact[],search:string=""): any[] {
     if(!search.trim()){
       return contacts
     }

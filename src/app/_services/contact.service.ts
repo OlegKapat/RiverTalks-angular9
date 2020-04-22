@@ -39,13 +39,13 @@ export class ContactService implements OnInit{
         addContactToList(){
             this.apiService.send({
                 method:"contact/add",
-                id:5
+                id:7
             })
         }
         acceptContactToList(){
             this.apiService.send({
                 method:"contact/accept",
-                id:1
+                id:5
             })
         }
         rejectContact(){
@@ -57,7 +57,7 @@ export class ContactService implements OnInit{
         deleteContact(){
             this.apiService.send({
                 method:"contact/del",
-                id:1
+                id:5
             })
         }
 }
