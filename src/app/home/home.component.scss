@@ -606,7 +606,23 @@ div[class~="onTop"] > .count {
 	height: 70px;
 	background: #FFF;
 }
-
+.rightPanel .messegeselectBar{
+	position: relative;
+	width: 100%;
+	height: 70px;
+	background: #FFF;
+}
+.btn-group{
+	padding: 20px;
+}
+.btn-group button{
+  margin-left: 20px;
+}
+.right{	
+	padding: 20px;
+	position: absolute;
+	margin-left: 50px;
+}
 .leftSide {
 	display: inline-block;
 	clear: none;
@@ -1113,4 +1129,7 @@ a:hover{
 }
 .arrow{
   transform: rotate(45deg);
+}
+.messegeselectBar{
+	transition: linear,300;
 }

@@ -48,32 +48,30 @@ export class MessageService implements OnInit{
             
         })   
     }
-    getMessage(id){
-      this.apiService.send({
+    getMessage(id?:number,messageId?:number){
+     return this.apiService.send({
         method:"message/get",
         from:id,
         status:'new,updated',
-        id:'',
+        id:messageId,
         "min-id":10,
         "with-own":true,
         updated:Date.now,
-       
-      
       })
     }
-    updateMessage(status){
+    updateMessage(id,text){
       this.apiService.send({
         method:"message/update",
-        id:'',
-        text:"",
+        id:id,
+        text:text,
         attachments:'',
         status_text:status
       })
     }
-    deleteMessage(){
+    deleteMessage(id){
       this.apiService.send({
         method:"message/del",
-        id:1,
+        id:id,
       })
     }
     getChatMessage(){

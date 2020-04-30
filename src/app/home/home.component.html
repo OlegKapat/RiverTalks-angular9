@@ -5,7 +5,7 @@
 		<header>
 			<button class="trigger" (click)="opened=!opened">
 				<svg viewBox="0 0 24 24">
-    <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" ></path> />
+    <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" ></path> 
          </svg>
 			</button>
 			<input class="searchChats" [(ngModel)]="searchfield" type="search" placeholder="Search..."/>
@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="rightPanel col-9">
-		<div class="topBar">
+		<div class="topBar" *ngIf="!selected;else select">  <!--bar top-->
 			<div class="rightSide">
         <button class="tbButton search">
 					<i class="material-icons">call</i>
@@ -73,9 +73,18 @@
             </button>
         </mat-menu>
 			</div>
-
     </div>
-
+      <!--bar with message select-->
+      <ng-template #select>
+        <div class="messegeselectBar">
+          <div class="btn-group" role="group" >
+            <button mat-raised-button color="primary" (click)="forward()">Forward</button>
+            <button mat-raised-button color="primary"(click)="deleteMessage()">Delete</button>
+          </div>
+              <button class="right" mat-button color="primary" (click)="cancel()">Cancel</button>
+        </div>
+      </ng-template>
+    
      <div class="row">
         <div class="col-12">
           <mat-sidenav-container class="example-container" >
@@ -84,7 +93,7 @@
                 <p class="infotext">User info</p>
                 <div class="contact-card__header-image">
                   <div class="contact-card__avatar">
-                    <img src="https://pbs.twimg.com/profile_images/1165298803949355008/ZEoHXvQ9_400x400.jpg">
+                    <img src="https://avatarko.ru/img/kartinka/9/muzhchina_kapyushon_serial_8126.jpg">
                   </div>
                 </div>
                 <p class="name">Random Name</p>
@@ -143,27 +152,28 @@
               <section class="sec">
                 <div class="convHistory userBg">
                   <!-- сообщения подключить после логики -->
-                   <app-messages [messagetext]="messageContent"></app-messages>
+                   <app-messages (messageText)="messageContent($event)" ></app-messages>
                 </div>
                   <!--отправка сообщений-->
-                  <div class="replyBar">
+                  <div class="replyBar" *ngIf="!messageForEdit; else edit">
                     <button class="attach">
                       <i class="material-icons d45">attach_file</i>
                     </button>
-                    <input #text  (click)="showArray()" (keyup.enter)="sendMessage(text.value)"
+                    <input  #text (click)="showArray()" (keyup.enter)="sendMessage(text.value)"
                     type="text"  class="form-control"  class="replyMessage" 
                     placeholder="Type your message... "/>
+                    
 
-                    <div class="emojiBar">
+                    <!-- <div class="emojiBar">
                       <div class="emoticonType">
                       <button id="panelEmoji">Emoji</button>
                       <button id="panelStickers">Stickers</button>
                       <button id="panelGIFs">GIFs</button>
-                      </div>
+                      </div> -->
 
 
                       <!-- Emoji panel -->
-                      <div class="emojiList">
+                      <!-- <div class="emojiList">
                         <button id="smileface" class="pick">
                       </button>
                         <button id="grinningface" class="pick"></button>
@@ -171,16 +181,17 @@
                         <button id="rofl" class="pick"></button>
                         <button id="somface" class="pick"></button>
                         <button id="swfface" class="pick"></button>
-                      </div>
+                      </div> -->
 
+                    
                       <!-- the best part of telegram ever: STICKERS!! -->
-                      <div class="stickerList">
+                      <!-- <div class="stickerList">
                         <button id="smileface" class="pick">
                       </button>
                         <button id="grinningface" class="pick"></button>
                         <button id="tearjoyface" class="pick"></button>
                       </div>
-                    </div>
+                    </div> -->
 
                     <div class="otherTools">
                       <button class="toolButtons emoji">
@@ -199,6 +210,33 @@
 
                     </div>
                   </div>
+                  <!--редактирование сообщений -->
+                  <ng-template #edit>
+                    <div class="replyBar">
+                      <button class="attach">
+                        <i class="material-icons d45">attach_file</i>
+                      </button>
+                      <input  #edittext [value]="messageForEdit" (click)="showArray()" (keyup.enter)="editMessage(edittext.value)"
+                      type="text"  class="form-control"  class="replyMessage" 
+                      placeholder="Edit  your message... "/>
+                      <div class="otherTools">
+                        <button class="toolButtons emoji">
+                          <i class="material-icons">edit</i>
+                        </button>
+  
+                          <button type="button" (click)="editMessage(edittext.value)" class="toolButtons audio" *ngIf="show; else mic" >
+                            <i  class="material-icons arrow">near_me</i>
+                          </button>
+  
+                        <ng-template #mic>
+                          <button class="toolButtons audio" >
+                            <i class="material-icons">mic</i>
+                          </button>
+                        </ng-template>
+  
+                      </div>
+                    </div>
+                  </ng-template>
                 </section>
 
             </mat-sidenav-content>

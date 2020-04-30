@@ -1,0 +1,32 @@
+<div class="modal-forward">
+<div class="modal-header">
+    <h4 class="modal-title">{{my_modal_title}}</h4>
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input [(ngModel)]="search" class="search_input" type="text" name="" placeholder="Search...">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+    </div>
+  
+    <div id="userlist">
+      <ul >
+          <li class="active" *ngFor="let contact of contactform | search:search; let i = index" 
+          (click)="forwardMessage(contact['user_id']);setIndex(i)"  [class.active]="selectedIndex === i"  >
+              <div class="avatar">
+                  <a class="gavatar">
+                      <span *ngIf="initialAvatarText; else image">{{contact['sign']}}</span>
+                      <ng-template #image>
+                          <img  [src]="initialAvatarImage">
+                      </ng-template> 
+                  </a>
+                  <span style="color: black;">{{contact['user']['name']}}</span>
+              </div>
+            
+          </li>
+      </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close')">Close</button>
+  </div>
+</div>

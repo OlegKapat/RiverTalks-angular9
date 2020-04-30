@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -36,7 +36,11 @@ import {SearchPipe} from './_services/shared/pipes/search.pipe';
 import { GroupComponent } from './home/group/group.component';
 import { LeftSideCardComponent } from './home/left-side-card/left-side-card.component';
 import { RefDirective } from './_services/shared/directives/ref.directive';
-import { ModalComponent } from './_services/shared/modal/modal.component';
+import { ModalComponent } from './_services/shared/modals/modal/modal.component';
+import { ForwardmodalComponent  } from './_services/shared/modals/forwardmodal/forwardmodal.component';
+import { AlertModule } from './_services/shared/modals/module/alert/alert.module';
+
+
 
 
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
@@ -44,7 +48,6 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
-  
     AlertComponent,
     HomeComponent,
     LoginComponent,
@@ -58,7 +61,9 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     SearchPipe,
     GroupComponent,
     LeftSideCardComponent,
-    RefDirective
+    RefDirective,
+    ForwardmodalComponent
+   
     
   ],
   imports: [
@@ -75,7 +80,10 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     MatInputModule,
     MatCardModule,
     MatDialogModule,
+    NgbModule,
     MatSlideToggleModule,
+    AlertModule,
+    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -96,7 +104,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [PageComponent,ModalComponent]
+  entryComponents: [PageComponent,ForwardmodalComponent]
 })
 export class AppModule {
 }
