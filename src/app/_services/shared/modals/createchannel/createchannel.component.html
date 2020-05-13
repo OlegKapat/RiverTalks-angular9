@@ -1,0 +1,22 @@
+<div class="modal-newgroup">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h4 class="modal-title">Create new channel</h4>
+            <form class="example-form">
+              <div class="upload-btn-wrapper">
+                <button *ngIf="!imagePrevie" class="btnn" type="button" ><img src="../../../../../assets//devimages//camera-1085705_640.png"></button>
+                <input class="inputfile" type="file" name="myfile" (change)="onFileUpload($event)" />
+                <img  [src]="imagePrevie" *ngIf="imagePrevie" >
+                <mat-form-field class="example-full-width">
+                  <mat-label>Add new channel</mat-label>
+                  <input #channelname matInput  class="inputname">
+                </mat-form-field>
+              </div>
+              </form>
+              <div class="btn-group">
+              <button mat-raised-button color="primary"(click)="create(channelname.value)">Create</button>
+              <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

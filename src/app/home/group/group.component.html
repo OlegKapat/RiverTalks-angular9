@@ -1,1 +1,19 @@
-<p>group works!</p>
+<div id="userlist">
+    <ul >
+        <li class="active" *ngFor="let list of groupList; let i=index" 
+        (click)="setIndex(i)"  [class.active]="selectedIndex === i"  >
+            <div class="avatar">
+                <a class="gavatar">
+                    <span *ngIf="initialAvatarText; else image">{{list['sign']}}</span>
+                    <ng-template #image>
+                        <img  [src]="initialAvatarImage">
+                    </ng-template> 
+                </a>
+                <span style="color: black;">{{list['title']}}</span>
+            </div>
+             <div class="time">
+                <span>{{list['updated'] |  date:'hh:mm' }}</span>
+             </div>    
+        </li>
+    </ul>
+</div>

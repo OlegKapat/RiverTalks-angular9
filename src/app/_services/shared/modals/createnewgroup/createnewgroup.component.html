@@ -1,0 +1,24 @@
+<div class="modal-newgroup">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h4 class="modal-title">Create new group</h4>
+            <form class="example-form">
+               <!-- <button type="file" (click)="onFileUpload($event)"  class="buttonimage"><img src="../../../../../assets//devimages//camera-1085705_640.png"></button> -->
+               <div class="upload-btn-wrapper">
+                <button *ngIf="!imagePrevie" class="btnn" type="button" ><img src="../../../../../assets//devimages//camera-1085705_640.png"></button>
+                <input class="inputfile" type="file" name="myfile" (change)="onFileUpload($event)" />
+                <img  [src]="imagePrevie" *ngIf="imagePrevie" >
+                <mat-form-field class="example-full-width">
+                  <mat-label>Add new name group</mat-label>
+                  <input #groupname matInput  class="inputname">
+                </mat-form-field>
+              </div>
+               
+              </form>
+              <div class="btn-group">
+              <button mat-raised-button color="primary"(click)="create(groupname.value)">Create</button>
+              <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,28 +4,29 @@
         <section class="menuWrap">
           <div class="menu">
             <div class="me userBg">
-              <div class="image"></div>
+              <img   class="image" *ngIf="user['user']['photo']!==''; else photo"  src="../../../assets//devimages//shutter-1237250_640.png">
+              <ng-template #photo><img class="image" src="user['user']['photo']"></ng-template>
               <div class="myinfo">
-              <p class="name">Random Name</p>
-              <p class="phone">+1 12 1234 5678</p>
+              <p class="name">{{user['user']['name']}}</p>
+              <p class="phone">{{user['user']['phone']}}</p>
               </div>
               <button class="cloud">
                 <i class="material-icons">bookmark</i>
               </button>
             </div>
             <nav>
-              <button class="ng" (click)="showModalForNewGroup()">
+              <button class="ng" (click)="createNewGroup()">
                 <i class="material-icons">&#xE8D3;</i>
                 <span>New Group</span>
               </button>
 
-              <button class="nc">
+              <button class="nc" (click)="createNewChannel()">
                 <i class="material-icons">&#xE0B6;</i>
 
                 <span>New Channel</span>
               </button>
 
-              <button class="cn">
+              <button class="cn" (click)="showContacts()">
                 <i class="material-icons">&#xE851;</i>
 
                 <span>Contacts</span>

@@ -2,8 +2,11 @@ import { Component, OnInit, Input, AfterViewInit, Output,EventEmitter } from '@a
 import { ApiService, MessageService } from 'src/app/_services';
 import {Contact} from '../../_models/contact'
 import { ContactService } from 'src/app/_services/contact.service';
-import { Observable } from 'rxjs';
+import { Observable, concat, pipe, merge, zip } from 'rxjs';
 import { Router } from '@angular/router';
+import { Group } from 'src/app/_models/group';
+import { GroupService } from 'src/app/_services/group.service';
+import { switchMap, concatMap, map } from 'rxjs/operators';
 
 
 
@@ -15,29 +18,32 @@ import { Router } from '@angular/router';
 export class ContactComponent implements OnInit {
   @Input()searchfield:string;
   allcontacts$:Observable<any[]>;
+  allgroups$:Observable<any[]>;
+  result$:Observable<any[]>;
   contactform:any[]=[]
   initialAvatarImage:string;
   initialAvatarText:string;
   newcontactform:any[]=[];
   selectedIndex: number = null;
+  selectedIndexForGroup: number = null;
+  groupList:Group[]=[];
 
 
-  constructor(private apiService:ApiService, private contactService:ContactService, private router:Router ) { }
+  constructor(private apiService:ApiService, private contactService:ContactService,
+              private router:Router, private groupService:GroupService ) { }
 
   ngOnInit(): void {
    this.contactService.getContacts()
    this.allcontacts$=this.apiService.on("contact/get")
-  //  this.contactService.addContactToList();
-  //  this.apiService.on<Contact[]>('contact/add')
-  // this.contactService.deleteContact(); 
-  // this.apiService.on<Contact>('contact/del')
-  // this.contactService.acceptContactToList()
-  // this.apiService.on<Contact>('contact/accept')
-  
-   this.allcontacts$.subscribe(data=>{this.contactform=[...data['contacts']]
+   this.groupService.getGroup();
+   this.allgroups$=this.apiService.on<Group[]>("group/get")
    
+ 
+  //zip(this.allgroups$,this.allcontacts$).pipe(map(x=>this.contactform=[x[0]['groups'],x[1]['contacts']])).subscribe(data=>console.log(data))
+  zip(this.allgroups$,this.allcontacts$).subscribe(data=>{this.contactform=[data[0]['groups'],data[1]['contacts']],console.log(this.contactform);
+  
     if(this.contactform){
-      this.contactform.forEach(value=>{   
+      this.contactform[1].forEach(value=>{   
         if(value['user']['avatar']['file']['url'] ==""){
          value.sign= this.transformAvatar(value['user']['name'])
         }
@@ -46,12 +52,34 @@ export class ContactComponent implements OnInit {
         }
       })
     }
+    if(this.contactform){
+      this.contactform[0].forEach(value=>{  
+         value.sign= this.transformAvatar(value['title']) 
+      })
+    }
    })
-   
   }
+  //  this.allcontacts$. subscribe(data=>{this.contactform=[...data['contacts']]
+   
+  //   if(this.contactform){
+  //     this.contactform.forEach(value=>{   
+  //       if(value['user']['avatar']['file']['url'] ==""){
+  //        value.sign= this.transformAvatar(value['user']['name'])
+  //       }
+  //       else{
+  //         this.initialAvatarImage=value['user']['avatar']['file']['url'] 
+  //       }
+  //     })
+  //   }
+  //  })
+   
+  
   setIndex(index: number) {
     this.selectedIndex = index;
  }
+ setIndexForGroup(index: number) {
+  this.selectedIndexForGroup = index;
+}
   transformAvatar(name:string):string{
     var str=name.split(' ');
     var first='';
@@ -66,10 +94,14 @@ export class ContactComponent implements OnInit {
        return this.initialAvatarText = first+second 
   }
   getAllMessage(id){
-    
      this.router.navigate(['/home'],{queryParams:{
        userId:id
      }})
     
+  }
+  getGroupMessage(id){
+    this.router.navigate(['/home'],{queryParams:{
+      groupId:id
+    }})
   }
 }

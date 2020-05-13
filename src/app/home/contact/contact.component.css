@@ -12,6 +12,7 @@ ul{
 }
 span{
     color: black;
+    font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
 }
 img{
     width: 40px;
@@ -33,4 +34,9 @@ img{
 }
 .active{
     background-color: rgb(174, 174, 218);
+}
+.title{
+    margin-left: 40%;
+    color: red;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }

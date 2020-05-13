@@ -15,7 +15,7 @@ export class ContactService implements OnInit{
    constructor(private apiService:ApiService){}
    
         ngOnInit(){
-          this.getContacts()
+         
         }
         getContacts(){
             this.apiService.send({
@@ -24,10 +24,10 @@ export class ContactService implements OnInit{
                 "per-page":20
             })
         }
-        searchContact(){
+        searchContact(item){
             this.apiService.send({
                 method:"contact/search",
-                "s":"serch"
+                "s":item
             })
         }
         getRequestContact(){
@@ -36,10 +36,10 @@ export class ContactService implements OnInit{
                 status:"new"
             })
         }
-        addContactToList(){
+        addContactToList(id){
             this.apiService.send({
                 method:"contact/add",
-                id:7
+                id:id
             })
         }
         acceptContactToList(){

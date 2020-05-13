@@ -1,20 +1,44 @@
 <div id="userlist">
+    <ng-container *ngIf="contactform[1]">
     <ul >
-        <li class="active" *ngFor="let contact of contactform | search:searchfield; let i = index" 
-        (click)="getAllMessage(contact.user_id);setIndex(i)"  [class.active]="selectedIndex === i"  >
+        <span class="title">Users</span>
+        <li  class="active" *ngFor="let contact of contactform[1]  | search:searchfield; let i = index" [type]="contact"
+        (click)="getAllMessage(contact['user_id']);setIndex(i)"  [class.active]="selectedIndex === i"  >
             <div class="avatar">
                 <a class="gavatar">
-                    <span *ngIf="initialAvatarText; else image">{{contact.sign}}</span>
+                    <span *ngIf="initialAvatarText; else image">{{contact['sign']}}</span>
                     <ng-template #image>
                         <img  [src]="initialAvatarImage">
                     </ng-template> 
                 </a>
-                <span style="color: black;">{{contact.user.name}}</span>
+                <span style="color: black;">{{contact['user']['name']}}</span>
             </div>
              <div class="time">
-                <span>{{contact.updated |  date:'hh:mm' }}</span>
+                <span>{{contact['updated'] |  date:'hh:mm' }}</span>
              </div>    
         </li>
     </ul>
+</ng-container>
+<ng-container *ngIf="contactform[0]">
+    <ul >
+        <span class="title">Groups</span>
+        <li  class="active" *ngFor="let contact of contactform[0]  | search:searchfield; let i = index" [type]="contact"
+        (click)="getGroupMessage(contact['id']);setIndexForGroup(i)"  [class.active]="selectedIndexForGroup === i"  >
+            <div class="avatar">
+                <a class="gavatar">
+                    <span *ngIf="initialAvatarText; else image">{{contact['sign']}}</span>
+                    <ng-template #image>
+                        <img  [src]="initialAvatarImage">
+                    </ng-template> 
+                </a>
+                <span style="color: black;">{{contact['title']}}</span>
+            </div>
+             <div class="time">
+                <span>{{contact['updated'] |  date:'hh:mm' }}</span>
+             </div>    
+        </li>
+    </ul>
+</ng-container>
 </div>
+
 

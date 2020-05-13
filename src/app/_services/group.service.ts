@@ -9,13 +9,19 @@ export class GroupService implements OnInit{
     ngOnInit(){
 
     }
-    addGroup(){
+    addGroup(title:string){
         this.apiService.send({
             method:"group/new",
-            title:"Пока новая",
-            alias:"Торговля",
+            title:title,
+            alias:"School",
             description:"Как хотите",
             private:false
         })
+    }
+    getGroup(){
+     this.apiService.send({
+        method:"group/get",
+       
+     })
     }
 }

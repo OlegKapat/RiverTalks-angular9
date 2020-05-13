@@ -59,7 +59,7 @@ export class MessageService implements OnInit{
         updated:Date.now,
       })
     }
-    updateMessage(id,text){
+    updateMessage(id?:number,text?:string){
       this.apiService.send({
         method:"message/update",
         id:id,
@@ -72,6 +72,12 @@ export class MessageService implements OnInit{
       this.apiService.send({
         method:"message/del",
         id:id,
+      })
+    }
+    receiveMessage(id){
+      this.apiService.send({
+        method:"message/received",
+        id:id
       })
     }
     getChatMessage(){

@@ -18,6 +18,7 @@
             </mat-sidenav>
                     <mat-sidenav-content>
                         <app-contact [searchfield]="searchfield" ></app-contact>
+                       
                     </mat-sidenav-content>
           </mat-sidenav-container>
 		</div>
@@ -37,6 +38,9 @@
 				</button>
 				<button class="tbButton otherOptions" [matMenuTriggerFor]="menu" >
 					<i class="material-icons">more_vert</i>
+        </button>
+        <button class="tbButton otherOptions" [matMenuTriggerFor]="menu" >
+					<i class="material-icons" (click)="exit()">exit_to_app</i>
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>

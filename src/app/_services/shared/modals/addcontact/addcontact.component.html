@@ -1,0 +1,48 @@
+<div class="modal-newgroup">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h4 class="modal-title">New contact</h4>
+            <div class="example-form">
+               <div class="upload-btn-wrapper">
+                 <div class="namefild">
+                  <mat-icon >person_add</mat-icon>
+                  <mat-form-field class="example-full-width">
+                    <mat-label>First name</mat-label>
+                    <input #personname matInput  class="inputname">
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field  class="example-full-width last">
+                    <mat-label>Last name</mat-label>
+                    <input  matInput  class="inputname">
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-icon >add_ic_call</mat-icon>
+               
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Name</mat-label>
+                      <input type="text" (input)="createContact($event.target.value)"
+                             aria-label="Number"
+                             matInput
+                             [formControl]="myControl"
+                             [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option (click)="getId(option['id'])" *ngFor="let option of findUser" [value]="option['name'] && option['login']">
+                          {{option.name && option.login }}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                 
+                </div>
+               
+              </div>
+              
+              </div>
+              <div class="btn-group">
+              <button mat-raised-button color="primary" (click)="addContact()">Add</button>
+              <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

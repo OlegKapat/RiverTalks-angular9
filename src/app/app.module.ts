@@ -19,17 +19,8 @@ import {environment} from '../environments/environment';
 import {LogoutComponent} from './logout/logout.component';
 import {PageComponent} from './page/page.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatButton, MatButtonModule} from "@angular/material/button";
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
-import { MatSliderModule } from '@angular/material/slider';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatInputModule} from '@angular/material/input';
-import { MatIconModule } from "@angular/material/icon";
-import {MatCardModule} from '@angular/material/card';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MessagesComponent } from './home/messages/messages.component';
 import { ContactComponent } from './home/contact/contact.component';
 import {SearchPipe} from './_services/shared/pipes/search.pipe';
@@ -37,9 +28,9 @@ import { GroupComponent } from './home/group/group.component';
 import { LeftSideCardComponent } from './home/left-side-card/left-side-card.component';
 import { RefDirective } from './_services/shared/directives/ref.directive';
 import { ModalComponent } from './_services/shared/modals/modal/modal.component';
-import { ForwardmodalComponent  } from './_services/shared/modals/forwardmodal/forwardmodal.component';
-import { AlertModule } from './_services/shared/modals/module/alert/alert.module';
-
+import { AlertModule } from './_components/alertwindow/alert.module';
+import { ModalModule } from './_services/shared/modals/modal.module';
+import { MaterialModule } from './_services/shared/material/material.module';
 
 
 
@@ -58,13 +49,10 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     LanguageSwitcherComponent,
     MessagesComponent,
     ContactComponent,
-    SearchPipe,
     GroupComponent,
     LeftSideCardComponent,
     RefDirective,
-    ForwardmodalComponent
-   
-    
+                 
   ],
   imports: [
     BrowserModule,
@@ -72,16 +60,10 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     SocketIoModule.forRoot(config),
     ReactiveFormsModule,
     FormsModule,
+    ModalModule,
+    MaterialModule, 
     HttpClientModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatMenuModule,
-    MatIconModule,
-    MatInputModule,
-    MatCardModule,
-    MatDialogModule,
-    NgbModule,
-    MatSlideToggleModule,
+    NgbModule, 
     AlertModule,
     
     TranslateModule.forRoot({
@@ -95,16 +77,14 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     ApiModule.config({
       url: environment.wss
     }),
-
-    MatDialogModule,
-    MatButtonModule,
     BrowserAnimationsModule,
 
   ],
-
-  providers: [],
+  
+  exports:[],
+  providers: [SearchPipe],
   bootstrap: [AppComponent],
-  entryComponents: [PageComponent,ForwardmodalComponent]
+  entryComponents: [PageComponent]
 })
 export class AppModule {
 }

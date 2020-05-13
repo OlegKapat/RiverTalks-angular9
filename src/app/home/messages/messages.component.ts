@@ -30,7 +30,7 @@ export class MessagesComponent implements OnInit,AfterViewInit,OnDestroy{
 
 
   constructor(private messageService:MessageService, private apiService:ApiService,private router:Router,
-              private route:ActivatedRoute, private resolver:ComponentFactoryResolver, public dialog:MatDialog,
+              private route:ActivatedRoute, public dialog:MatDialog,
              
              ) {}
               
@@ -68,20 +68,9 @@ export class MessagesComponent implements OnInit,AfterViewInit,OnDestroy{
        sessionStorage.setItem("copy",text)
   
   }
-  messageToTransform(){
-    this.apiService.on<Message[]>('message/get').subscribe(data=>{this.arrayText=data['messages']
-    if(this.arrayText){
-        this.arrayText.forEach(element=>{
-         if(element['status_text']==='new'){
-            // this.messageService.updateMessage('updated')  при оптимизации бэкенда открыть
-            // this.apiService.on<Message[]>('message/update');
-         }
-         
-        } 
-        )
-    }
-  },error=>console.log(error)
-  )  
+  messageToTransform(id,text){
+             this.messageService.updateMessage(id,text+" ")  
+   
   }
   ngOnDestroy(){
     if(this.aSub){

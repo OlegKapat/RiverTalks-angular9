@@ -1,29 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ContactService } from 'src/app/_services/contact.service';
-import { ApiService } from 'src/app/_services/api.service';
+import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal,NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService, ContactService } from 'src/app/_services';
 import { Observable } from 'rxjs';
-import { MessageService } from 'src/app/_services/message.service';
-
+import { AddcontactComponent } from '../addcontact/addcontact.component';
 
 @Component({
-  selector: 'app-forwardmodal',
-  templateUrl: './forwardmodal.component.html',
-  styleUrls: ['./forwardmodal.component.css']
+  selector: 'app-contactmodal',
+  templateUrl: './contactmodal.component.html',
+  styleUrls: ['./contactmodal.component.css']
 })
-export class ForwardmodalComponent implements OnInit {
-  allcontacts$:Observable<any[]>;
-  contactform:any[]=[];
+export class ContactmodalComponent implements OnInit {
+  search="";
   initialAvatarText:string;
   initialAvatarImage:string;
   selectedIndex: number = null;
-  search="";
-  @Input() my_modal_title;
-  //@Input() my_modal_content;
+  contactform:any[]=[];
+  allcontacts$:Observable<any[]>;
 
-  constructor(public activeModal: NgbActiveModal, private contactService:ContactService, 
-              private apiService:ApiService, private messageService:MessageService) { }
-   
+  constructor(public activeModal: NgbActiveModal, private apiService:ApiService,
+              private contactService:ContactService, public modal:NgbModal ) { }
+
   ngOnInit(): void {
     this.contactService.getContacts();
     this.allcontacts$=this.apiService.on("contact/get");
@@ -39,6 +35,14 @@ export class ForwardmodalComponent implements OnInit {
       })
     }
   })
+    
+  }
+  createContact(){
+     this.modal.open(AddcontactComponent,{ windowClass: 'my-class'});
+     this.activeModal.close();
+  }
+  setIndex(index: number) {
+    this.selectedIndex = index;
   }
   transformAvatar(name:string):string{
     var str=name.split(' ');
@@ -53,12 +57,4 @@ export class ForwardmodalComponent implements OnInit {
      }
        return this.initialAvatarText = first+second 
   }
-  forwardMessage(userId){
-   let message=sessionStorage.getItem('copy');
-   this.messageService.sendMessage(message,userId);
-  
- }
- setIndex(index: number) {
-  this.selectedIndex = index;
-}
 }

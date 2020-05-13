@@ -66,11 +66,14 @@ export class HomeComponent implements OnInit,AfterViewInit{
    else{
    this.route.queryParams.subscribe(params=>{this.currentId=+params['userId']
    this.messageService.sendMessage(message,this.currentId);
-   //this.apiservice.on<any>('message/send')
+   this.apiservice.on<any>('message/get')
   })
    this.inputmesssage.nativeElement.value='';
    this.show=false;
    }
+   this.route.queryParams.subscribe(params=>{
+    this.messageService.getMessage(+params['userId'],null)
+  })
  }
  editMessage(message){
   this.route.queryParams.subscribe(params=>{this.messageId=+params['messageId']
@@ -100,6 +103,10 @@ export class HomeComponent implements OnInit,AfterViewInit{
         select:undefined
     },  queryParamsHandling: 'merge',})
     }
- 
+ exit(){
+   localStorage.clear();
+   this.router.navigate(['/']);
+   this.authService.logout()
+ }
 }
 

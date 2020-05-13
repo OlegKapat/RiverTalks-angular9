@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AlertwindowComponent} from '../../../../../_components/alertwindow/alertwindow.component';
-import {AlertwindowService} from '../../../../alertwindow.service';
+import {AlertwindowComponent} from './alertwindow.component';
+import {AlertwindowService} from '../../_services/alertwindow.service';
 
 
 @NgModule({
