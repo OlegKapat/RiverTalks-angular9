@@ -12,6 +12,7 @@ import { EventEmitter } from 'events';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ForwardmodalComponent } from '../_services/shared/modals/forwardmodal/forwardmodal.component';
 import { HttpLoaderFactory } from '../app.module';
+import { FocusService } from '../_services/focus.service';
 
 
 
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
    currentId:number;
    messageList:string[] = [];
    color: ThemePalette = 'primary';
-   @ViewChild('text') inputmesssage:ElementRef;
+   @ViewChild('text') public inputmesssage:ElementRef;
    @ViewChild('edittext') edirmesssage:ElementRef;
    
  
@@ -45,13 +46,16 @@ export class HomeComponent implements OnInit,AfterViewInit{
     private messageService:MessageService,
     private route:ActivatedRoute,
     private router:Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private focusService:FocusService
   ) {}
 
   ngOnInit(): void {
+    
   }
   ngAfterViewInit(){
-    this.route.queryParamMap.subscribe(param=>{this.selected=param['params'].select}) 
+    this.route.queryParamMap.subscribe(param=>{this.selected=param['params'].select});
+    this.focusService.getFocus(this.inputmesssage.nativeElement) 
   }
   messageContent(message){
    this.messageForEdit=message;

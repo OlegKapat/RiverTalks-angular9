@@ -129,7 +129,7 @@ export class AuthService implements OnInit{
       phone: user.phone,
     });
   }
-
+  
   logout() {
     this.lastErrorS.next(null);
     if (this.currentUser) {

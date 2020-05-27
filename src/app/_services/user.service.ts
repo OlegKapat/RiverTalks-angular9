@@ -20,4 +20,11 @@ export class UserService {
         "s":item
     })
 }
+  userGetById(id){
+  this.apiService.send({
+   method: "user/get",
+   id:id
+  })
+}
+ 
 }

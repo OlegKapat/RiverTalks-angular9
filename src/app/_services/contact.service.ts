@@ -54,10 +54,10 @@ export class ContactService implements OnInit{
                 id:1
             })
         }
-        deleteContact(){
+        deleteContact(id){
             this.apiService.send({
                 method:"contact/del",
-                id:5
+                id:id
             })
         }
 }

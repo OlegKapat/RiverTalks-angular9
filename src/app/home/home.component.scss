@@ -1121,9 +1121,7 @@ hr{
   vertical-align:text-top;
   margin: -25px 0 0 90px;
 }
-.del {
-  color: red;
-}
+
 a:hover{
   background-color: rgb(219, 214, 214);
 }
@@ -1132,4 +1130,22 @@ a:hover{
 }
 .messegeselectBar{
 	transition: linear,300;
+}
+
+
+.item{
+	position: relative;
+	text-align: center;
+}
+.icon{
+	display: inline;
+	position: absolute;
+	margin-left: -100px;	
+}
+.item :hover{
+	background: rgb(211, 210, 210);
+	cursor: pointer;
+}
+.del{
+	color: red;
 }

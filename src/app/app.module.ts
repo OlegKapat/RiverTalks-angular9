@@ -33,7 +33,6 @@ import { ModalModule } from './_services/shared/modals/modal.module';
 import { MaterialModule } from './_services/shared/material/material.module';
 
 
-
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
 @NgModule({
@@ -51,7 +50,8 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     ContactComponent,
     GroupComponent,
     LeftSideCardComponent,
-    RefDirective,
+    RefDirective
+   
                  
   ],
   imports: [

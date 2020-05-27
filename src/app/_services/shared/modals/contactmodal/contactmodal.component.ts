@@ -38,7 +38,7 @@ export class ContactmodalComponent implements OnInit {
     
   }
   createContact(){
-     this.modal.open(AddcontactComponent,{ windowClass: 'my-class'});
+     this.modal.open(AddcontactComponent,{ size: 'sm',centered: true });
      this.activeModal.close();
   }
   setIndex(index: number) {

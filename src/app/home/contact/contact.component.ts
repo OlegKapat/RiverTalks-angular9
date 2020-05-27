@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { Group } from 'src/app/_models/group';
 import { GroupService } from 'src/app/_services/group.service';
 import { switchMap, concatMap, map } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalforuserComponent } from 'src/app/_services/shared/modals/modalforuser/modalforuser.component';
+import { ModalforgroupComponent } from 'src/app/_services/shared/modals/modalforgroup/modalforgroup.component';
 
 
 
@@ -30,7 +33,7 @@ export class ContactComponent implements OnInit {
 
 
   constructor(private apiService:ApiService, private contactService:ContactService,
-              private router:Router, private groupService:GroupService ) { }
+              private router:Router, private groupService:GroupService,public dialog:MatDialog ) { }
 
   ngOnInit(): void {
    this.contactService.getContacts()
@@ -40,8 +43,7 @@ export class ContactComponent implements OnInit {
    
  
   //zip(this.allgroups$,this.allcontacts$).pipe(map(x=>this.contactform=[x[0]['groups'],x[1]['contacts']])).subscribe(data=>console.log(data))
-  zip(this.allgroups$,this.allcontacts$).subscribe(data=>{this.contactform=[data[0]['groups'],data[1]['contacts']],console.log(this.contactform);
-  
+  zip(this.allgroups$,this.allcontacts$).subscribe(data=>{this.contactform=[data[0]['groups'],data[1]['contacts']]
     if(this.contactform){
       this.contactform[1].forEach(value=>{   
         if(value['user']['avatar']['file']['url'] ==""){
@@ -103,5 +105,15 @@ export class ContactComponent implements OnInit {
     this.router.navigate(['/home'],{queryParams:{
       groupId:id
     }})
+  }
+  getUser(event,id){
+    event.preventDefault();
+     this.dialog.open(ModalforuserComponent)
+     this.getAllMessage(id)
+  }
+  getGroup(event,id){
+    event.preventDefault();
+    this.dialog.open(ModalforgroupComponent)
+    this.getGroupMessage(id)
   }
 }

@@ -30,9 +30,7 @@ export class MessagesComponent implements OnInit,AfterViewInit,OnDestroy{
 
 
   constructor(private messageService:MessageService, private apiService:ApiService,private router:Router,
-              private route:ActivatedRoute, public dialog:MatDialog,
-             
-             ) {}
+              private route:ActivatedRoute, public dialog:MatDialog) {}
               
   ngOnInit(): void {
     this.route.queryParams.subscribe((params:Params)=>{

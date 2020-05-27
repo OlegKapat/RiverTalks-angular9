@@ -10,6 +10,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const MaterialComponent=[
   MatSidenavModule,
@@ -22,7 +24,9 @@ const MaterialComponent=[
   MatAutocompleteModule,
   MatSlideToggleModule,
   MatButtonModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatDividerModule,
+  MatCheckboxModule
 ]
 
 

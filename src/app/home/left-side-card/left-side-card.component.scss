@@ -154,17 +154,17 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
-.me .settings {
-	position: absolute;
-	right: 20px;
-	bottom: 65px;
-	width: 40px;
-	height: 40px;
-	padding-top: 2px;
-	color: #FFF;
-	border-radius: 100%;
-	background: rgba(0, 0, 0, 0.15);
-}
+// .me .settings {
+// 	position: absolute;
+// 	right: 20px;
+// 	bottom: 65px;
+// 	width: 40px;
+// 	height: 40px;
+// 	padding-top: 2px;
+// 	color: #FFF;
+// 	border-radius: 100%;
+// 	background: rgba(0, 0, 0, 0.15);
+// }
 
 .me .settings:hover {
 	background: rgba(0, 0, 0, 0.35);
@@ -1118,6 +1118,4 @@ a:hover{
 .arrow{
   transform: rotate(45deg);
 }
-::ng-deep .my-class .modal-dialog { 
-	width: 50%;
-}
+

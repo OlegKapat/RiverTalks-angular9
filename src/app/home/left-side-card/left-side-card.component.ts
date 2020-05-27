@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {CreatenewgroupComponent} from '../../_services/shared/modals/createnewgroup/createnewgroup.component';
 import { CreatechannelComponent } from 'src/app/_services/shared/modals/createchannel/createchannel.component';
 import { ContactmodalComponent } from 'src/app/_services/shared/modals/contactmodal/contactmodal.component';
+import {SettingsComponent} from '../../_services/shared/modals/settings/settings.component';
 import { ApiService } from 'src/app/_services';
 import { UserService } from 'src/app/_services/user.service';
 
@@ -19,7 +20,8 @@ export class LeftSideCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUser();
-    this.apiService.on('user/get').subscribe(data=>{this.user=data},error=>console.log(error))
+    this.apiService.on('user/get').subscribe(data=>{this.user=data},error=>console.log(error));
+    
   }
  
   createNewGroup(){
@@ -29,6 +31,9 @@ export class LeftSideCardComponent implements OnInit {
     this.modalService.open(CreatechannelComponent)
 }
   showContacts(){
-  this.modalService.open(ContactmodalComponent,{ windowClass: 'my-class'} )
+  this.modalService.open(ContactmodalComponent,{ size: 'lg',centered: true } )
+}
+showSettings(){
+  this.modalService.open(SettingsComponent,{ size: 'sm',centered: true })
 }
 }

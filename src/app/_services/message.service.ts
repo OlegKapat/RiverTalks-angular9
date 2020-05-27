@@ -56,7 +56,6 @@ export class MessageService implements OnInit{
         id:messageId,
         "min-id":10,
         "with-own":true,
-        updated:Date.now,
       })
     }
     updateMessage(id?:number,text?:string){
@@ -86,10 +85,10 @@ export class MessageService implements OnInit{
         
       })
     }
-    chatDelete(){
+    chatDelete(id){
       this.apiService.send({
         method:"chat/del",
-        id:1
+        id:id
       })
     }
 }

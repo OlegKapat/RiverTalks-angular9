@@ -1,0 +1,52 @@
+.search{
+    display: inline-block;
+}
+.example-full-width{
+    margin-left: 10px;
+}
+hr{
+  width: 400px;
+  margin-top: 0;
+}
+button{
+  margin-left: 10px;
+}
+.btn-group{
+  margin-left: 50%;
+}
+.gavatar{
+color: rgb(255, 255, 255); background-color: #c6c699;
+display: inline-block; font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+font-size: 14px; border-radius: 80px; width: 40px; height: 40px; line-height: 40px; margin: 5px; text-align: center;
+}    
+li:hover{
+background-color:#EEEEEE;
+cursor: pointer;
+}
+ul{
+  padding-left: 0px;
+}
+span{
+  color: black;
+}
+img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50% 50%;
+}
+.avatar{
+  display: inline-block;
+}
+.active{
+  background-color: rgb(174, 174, 218);
+}
+li{
+  list-style-type: none;
+}
+.sign{
+  color: rgb(219, 157, 157);
+  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+}
+.name{
+  font-family: 'Roboto', sans-serif;
+}

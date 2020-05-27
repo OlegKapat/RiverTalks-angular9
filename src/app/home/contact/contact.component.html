@@ -2,7 +2,7 @@
     <ng-container *ngIf="contactform[1]">
     <ul >
         <span class="title">Users</span>
-        <li  class="active" *ngFor="let contact of contactform[1]  | search:searchfield; let i = index" [type]="contact"
+        <li (contextmenu)="getUser($event,contact['user_id'])" class="active" *ngFor="let contact of contactform[1]  | search:searchfield; let i = index" [type]="contact"
         (click)="getAllMessage(contact['user_id']);setIndex(i)"  [class.active]="selectedIndex === i"  >
             <div class="avatar">
                 <a class="gavatar">
@@ -15,14 +15,15 @@
             </div>
              <div class="time">
                 <span>{{contact['updated'] |  date:'hh:mm' }}</span>
-             </div>    
+             </div>
+              
         </li>
     </ul>
 </ng-container>
 <ng-container *ngIf="contactform[0]">
     <ul >
         <span class="title">Groups</span>
-        <li  class="active" *ngFor="let contact of contactform[0]  | search:searchfield; let i = index" [type]="contact"
+        <li (contextmenu)="getGroup($event,contact['id'])"  class="active" *ngFor="let contact of contactform[0]  | search:searchfield; let i = index" [type]="contact"
         (click)="getGroupMessage(contact['id']);setIndexForGroup(i)"  [class.active]="selectedIndexForGroup === i"  >
             <div class="avatar">
                 <a class="gavatar">

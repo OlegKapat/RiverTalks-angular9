@@ -18,10 +18,22 @@ export class GroupService implements OnInit{
             private:false
         })
     }
-    getGroup(){
+    getGroup(id?:number){
      this.apiService.send({
         method:"group/get",
+        id:id
        
      })
     }
+   getRequest(){
+       this.apiService.send({
+           method:"contact/get-requests"
+       })
+   } 
+   getMembers(id){
+       this.apiService.send({
+           method:"group/members",
+           id:id
+       })
+   }
 }

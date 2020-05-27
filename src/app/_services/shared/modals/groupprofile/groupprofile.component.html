@@ -1,0 +1,94 @@
+<div class="modal-header">
+    <h4 class="modal-title">Group Info</h4>
+    <div class="modal-title">
+        
+        <div class="title">
+            <button class="tbButton" [matMenuTriggerFor]="menu"  >
+                <i class="material-icons">more_vert</i>
+            </button>
+            <button class="tbButton otherOptions"  (click)="close()">
+                <i class="material-icons">clear</i>
+            </button>
+        </div> 
+    </div>
+</div>
+<div class="mefor">
+  <div *ngIf="initialAvatarImage; else text">
+    <div><img class="image" [src]="initialAvatarImage"></div>
+    <div class="name"><p >{{title}}</p></div>
+    <div class="count">
+      <i>{{countMembers}} members</i> 
+     </div>
+   
+  </div>
+    <ng-template  #text >
+      <div class="gavatar">{{sign}}</div>
+      <div class="name"><p >{{title}}</p></div>
+      <div class="count">
+        <i>{{countMembers}} members</i> 
+       </div> 
+    </ng-template>
+   
+  </div>
+  <hr>
+  <div class="addition">
+      <mat-divider></mat-divider>
+      <div class="info">
+        <mat-icon class="icon">notifications_none</mat-icon>
+        <span><a (click)="checked=!checked">Notification</a></span>
+        <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled"> </mat-slide-toggle>
+        
+    </div>
+  </div>
+  <mat-menu #menu="matMenu">
+    <!-- <button mat-menu-item >
+      <span>Share contact</span>
+    </button>  модалка под это создана нужно добавить на бэке эту функцию-->
+    <button mat-menu-item >
+      <span>Manage group</span>
+    </button>
+    <button mat-menu-item  >
+        <span>Add Members</span>
+   </button>
+   <button mat-menu-item >
+    <span>Delete chart</span>
+  </button>
+  <button mat-menu-item >
+    <span>Create poll</span>
+  </button>
+  <button mat-menu-item  >
+    <span>Delete and leave</span>
+  </button>
+  <button mat-menu-item  >
+    <span>Clear history</span>
+  </button>
+  </mat-menu>
+  <hr>
+  <div class="userlist">
+  
+      <div class="item" (click)="getMembers()">
+        <mat-icon class="icon">people</mat-icon>
+        <i>{{countMembers}} members</i> 
+        <mat-icon class="material-icons">search</mat-icon>
+      </div>
+     
+   
+    <ul >
+      <li (contextmenu)="getUserInfo($event,contact['id'])"  class="active" *ngFor="let contact of groupMembers  ; let i = index" [type]="contact"
+      (click)="setIndexForGroup(i)"  [class.active]="selectedIndexForUser === i"  >
+          <div class="avatar">
+              <a class="gavatar">
+                  <span *ngIf="initialAvatarText; else image">{{contact['sign']}}</span>
+                  <ng-template #image>
+                      <img  [src]="initialAvatarImage">
+                  </ng-template> 
+              </a>
+              <span style="color: black;">{{contact['title']}}</span>
+          </div>
+           <div class="time">
+              <span>{{contact['updated'] |  date:'hh:mm' }}</span>
+           </div>    
+      </li>
+  </ul>
+       
+  </div>

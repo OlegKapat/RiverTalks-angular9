@@ -1,0 +1,68 @@
+
+<div class="modal-newgroup ">
+    <div class="modal-header ">
+        <div class="modal-title">
+            <div class="title">
+                <h4 class="modal-title">Settings</h4>
+                <button class="tbButton otherOptions" (click)="closeModal()" >
+					<i class="material-icons">clear</i>
+                </button>
+                <button class="tbButton otherOptions" [matMenuTriggerFor]="menu"  >
+					<i class="material-icons">more_vert</i>
+                 </button>
+            </div> 
+        </div>
+    </div>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editProfile()">
+          <span>Edit profile</span>
+        </button>
+        <button mat-menu-item (click)="close()">
+          <span>Exit</span>
+        </button>
+      </mat-menu>
+    <div class="forme">
+        <div class="image-block">
+            <img   class="image" *ngIf="user['user']['photo']!==''; else photo"  src="../../../assets//devimages//shutter-1237250_640.png">
+            <ng-template #photo><img class="image" src="user['user']['photo']"></ng-template>
+        </div>
+        <div class="myinfo">
+            <h4 >{{user['user']['name']}}</h4>
+        </div>
+      </div>
+      <hr>
+      <div class="mainsets">
+          <div class="item" (click)="editProfile()">
+            <mat-icon class="icon">error_outline</mat-icon>
+             <h4 class="titleitem">Edit profile</h4>
+          </div>
+          <div class="item">
+            <mat-icon class="icon">notifications</mat-icon>
+             <h4 class="titleitem">Notifications</h4>
+          </div>
+          <div class="item">
+            <mat-icon class="icon">lock</mat-icon>
+             <h4 class="titleitem">Privacy and Security</h4>
+          </div>
+          <div class="item">
+            <mat-icon class="icon">chat</mat-icon>
+             <h4 class="titleitem">Chat Settings</h4>
+          </div>
+          <div class="item">
+            <mat-icon class="icon">folder</mat-icon>
+             <h4 class="titleitem">Folders</h4>
+          </div>
+          <div class="item">
+            <mat-icon class="icon">all_inbox</mat-icon>
+             <h4 class="titleitem">Advanced</h4>
+          </div>
+          <div class="item">
+            <mat-icon class="icon">font_download</mat-icon>
+             <h4 class="titleitem">Language</h4>
+          </div>
+         
+        
+
+      </div>
+</div>
+

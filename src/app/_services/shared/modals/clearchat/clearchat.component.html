@@ -1,0 +1,12 @@
+<div class="mainclear">
+<div>
+    <h4>Are you sure you want to delete all message history with {{user}}?</h4>
+</div>
+<div>
+    <input type="checkbox" [value]="forAnotherUser">   Also delete for {{user}}
+</div>
+<div class="btn-group">
+    <button mat-raised-button color="primary" (click)="deleteChat()">Delete</button>
+    <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
+  </div>
+</div>

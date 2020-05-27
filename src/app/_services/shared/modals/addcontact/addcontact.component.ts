@@ -34,6 +34,7 @@ export class AddcontactComponent implements OnInit {
     
   }
   addContact(){
-    this.contactService.addContactToList(this.numberId)
+    this.contactService.addContactToList(this.numberId);
+    this.activeModal.dismiss();
   }
 }

@@ -1,0 +1,87 @@
+<div class="modal-header">
+    <h4 class="modal-title">User Info</h4>
+    <div class="modal-title">
+        
+        <div class="title">
+            <button class="tbButton" [matMenuTriggerFor]="menu"  >
+                <i class="material-icons">more_vert</i>
+            </button>
+            <button class="tbButton otherOptions"  (click)="close()">
+                <i class="material-icons">clear</i>
+            </button>
+        </div> 
+    </div>
+</div>
+<div class="mefor">
+    <img   class="image" *ngIf="user['user']['photo']!==''; else photo"  src="../../../assets//devimages//shutter-1237250_640.png">
+    <ng-template #photo><img class="image" src="user['user']['photo']"></ng-template>
+    <div class="myinfo">
+    <p class="name">{{user['user']['name']}}</p>
+    <div class="date">
+        <mat-label>Last visit at {{user['user']['last_login'] | date:'fullDate'}}</mat-label>
+    </div>
+    
+    </div>
+  </div>
+  <hr>
+  <div class="addition">
+      <div class="info">
+          <mat-icon class="icon" >error_outline</mat-icon>
+          <h4>{{'234-56-45'}}</h4>
+          <mat-label>Mobile</mat-label>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="info">
+        <mat-icon class="icon">notifications_none</mat-icon>
+        <span><a (click)="checked=!checked">Notification</a></span>
+        <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled"> </mat-slide-toggle>
+        
+    </div>
+  </div>
+  <mat-menu #menu="matMenu">
+    <!-- <button mat-menu-item >
+      <span>Share contact</span>
+    </button>  модалка под это создана нужно добавить на бэке эту функцию-->
+    <button mat-menu-item (click)="editContact()">
+      <span>Edit contact</span>
+    </button>
+    <button mat-menu-item (click)="deleteContact()" >
+        <span>Delete contact</span>
+   </button>
+   <button mat-menu-item (click)="deleteChat()">
+    <span>Delete chart</span>
+  </button>
+  <button mat-menu-item (click)="clearHistory()">
+    <span>Clear history</span>
+  </button>
+  <button mat-menu-item (click)="blockContact()" >
+    <span>Block user</span>
+  </button>
+  </mat-menu>
+  <div>
+      <span (click)="sendMessage()" class="send"><a>SEND MESSAGE</a></span>
+  </div>
+  <hr>
+  <div class="list">
+    <!-- <div class="item" (click)="shareContact()" >
+      
+       <h4 class="titleitem">Share contact</h4>
+    </div> модалка под это создана нужно добавить на бэке эту функцию -->
+    <div class="item" (click)="editContact()" >
+      <mat-icon class="icon">format_list_bulleted</mat-icon>
+       <h4 class="titleitem">Edit contact</h4>
+    </div>
+    <div class="item" (click)="deleteContact()">
+      <h4 class="titleitem">Delete contact</h4>
+     </div>
+     <div class="item" (click)="clearHistory()">
+      <h4 class="titleitem">Clear history</h4>
+     </div>
+     <div class="item" (click)="deleteChat()" >
+      <h4 class="titleitem">Delete chat</h4>
+     </div>
+     <div class="item" (click)="blockContact()" >
+      <h4 class="titleitem del">Block user</h4>
+     </div>
+       
+  </div>
