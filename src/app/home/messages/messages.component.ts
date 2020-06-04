@@ -19,6 +19,7 @@ export class MessagesComponent implements OnInit,AfterViewInit,OnDestroy{
    allmessages$:Observable<any>;
    arrayText:Message[]=[];
    userId:number;
+   groupId:number;
    messageId:number;
    messageObject={}
    aSub:Subscription;
@@ -40,11 +41,18 @@ export class MessagesComponent implements OnInit,AfterViewInit,OnDestroy{
     })
   }
   ngAfterViewInit(){
-    this.route.queryParams.subscribe(params=>{this.userId=+params['userId']
-    this.messageService.getMessage(this.userId);
+    this.route.queryParams.subscribe(params=>{this.userId=+params['userId'],this.groupId=-params['groupId']
+    if(this.userId){
+      this.messageService.getMessage(this.userId );
+    }
+    else{
+      this.messageService.getMessage( this.groupId);
+    }
+    
+    
     })
     this.allmessages$=this.apiService.on<Message[]>('message/get');
-   
+    
   }
   
   public removeText(index: number): void {
@@ -53,8 +61,7 @@ export class MessagesComponent implements OnInit,AfterViewInit,OnDestroy{
 
   getMessage(messageId,event,text){
     this.currentMessage=text;
-       let dialogRef=this.dialog.open(ModalComponent)
-      // dialogRef.afterClosed().subscribe()
+      this.dialog.open(ModalComponent) 
        if(event){
         event.preventDefault();
           this.router.navigate(['/home'],{queryParams:{
@@ -67,7 +74,7 @@ export class MessagesComponent implements OnInit,AfterViewInit,OnDestroy{
   
   }
   messageToTransform(id,text){
-             this.messageService.updateMessage(id,text+" ")  
+    //this.messageService.updateMessage(id,text+" ") плохо работает для групп
    
   }
   ngOnDestroy(){

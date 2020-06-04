@@ -14,16 +14,20 @@
 </div>
 <div class="mefor">
   <div *ngIf="initialAvatarImage; else text">
-    <div><img class="image" [src]="initialAvatarImage"></div>
     <div class="name"><p >{{title}}</p></div>
+    <div><img class="image" [src]="initialAvatarImage"></div>
     <div class="count">
       <i>{{countMembers}} members</i> 
      </div>
    
   </div>
     <ng-template  #text >
-      <div class="gavatar">{{sign}}</div>
       <div class="name"><p >{{title}}</p></div>
+      <div class="upload-btn-wrapper">
+        <button type="button" class="gavatar-t ">{{sign}}</button>
+        <input type="file" class="dn"  (change)="onFileUpload($event)">
+      </div>
+      
       <div class="count">
         <i>{{countMembers}} members</i> 
        </div> 
@@ -67,28 +71,29 @@
   <div class="userlist">
   
       <div class="item" (click)="getMembers()">
-        <mat-icon class="icon">people</mat-icon>
-        <i>{{countMembers}} members</i> 
-        <mat-icon class="material-icons">search</mat-icon>
+        <mat-icon class="icon icon-top">people</mat-icon>
+        <i class="icon-top">{{countMembers}} members</i> 
+        <mat-icon class="material-icons icon-top">search</mat-icon>
       </div>
-     
-   
-    <ul >
-      <li (contextmenu)="getUserInfo($event,contact['id'])"  class="active" *ngFor="let contact of groupMembers  ; let i = index" [type]="contact"
-      (click)="setIndexForGroup(i)"  [class.active]="selectedIndexForUser === i"  >
-          <div class="avatar">
-              <a class="gavatar">
-                  <span *ngIf="initialAvatarText; else image">{{contact['sign']}}</span>
-                  <ng-template #image>
-                      <img  [src]="initialAvatarImage">
-                  </ng-template> 
-              </a>
-              <span style="color: black;">{{contact['title']}}</span>
-          </div>
-           <div class="time">
-              <span>{{contact['updated'] |  date:'hh:mm' }}</span>
-           </div>    
-      </li>
-  </ul>
+    
+      <div class="list">
+        <ul >
+            <li   class="active" *ngFor="let user of listOfUsersGroup; let i = index"
+            (click)="setIndex(i)"  [class.active]="selectedIndex === i" >
+                <div class="avatar">
+                    <a class="gavatar" >
+                        <span class="sign" *ngIf="initialAvatarText; else image">{{user['signs']}}</span>
+                        <ng-template #image>
+                            <img  [src]="initialAvatarImage">
+                        </ng-template> 
+                    </a>
+                    <span class="name" style="color: black">{{user['name']}} <i class="time">Last visit {{user['updated'] |  date:'hh:mm' }}</i></span> 
+                </div>
+              
+               
+                 
+            </li>
+        </ul>
+       </div>
        
   </div>

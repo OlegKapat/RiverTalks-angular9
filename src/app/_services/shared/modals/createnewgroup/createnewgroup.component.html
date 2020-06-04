@@ -8,12 +8,17 @@
                 <button *ngIf="!imagePrevie" class="btnn" type="button" ><img src="../../../../../assets//devimages//camera-1085705_640.png"></button>
                 <input class="inputfile" type="file" name="myfile" (change)="onFileUpload($event)" />
                 <img  [src]="imagePrevie" *ngIf="imagePrevie" >
-                <mat-form-field class="example-full-width">
-                  <mat-label>Add new name group</mat-label>
-                  <input #groupname matInput  class="inputname">
-                </mat-form-field>
-              </div>
                
+                <mat-form-field class="example-full-width1">
+                  <mat-label>Add new name group</mat-label>
+                  <input #groupname (input)="translit(groupname.value)" matInput  class="inputname">
+                </mat-form-field>
+                <mat-form-field class="example-full-width2">
+                  <mat-label>Add alias group</mat-label>
+                  <input [value]="newstr" matInput  class="inputname secondinput">
+                </mat-form-field>
+              
+              </div>
               </form>
               <div class="btn-group">
               <button mat-raised-button color="primary"(click)="create(groupname.value)">Create</button>

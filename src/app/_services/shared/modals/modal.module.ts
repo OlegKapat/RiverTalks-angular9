@@ -21,6 +21,11 @@ import { DeletechatComponent } from './deletechat/deletechat.component';
 import { BlockuserComponent } from './blockuser/blockuser.component';
 import { GroupprofileComponent } from './groupprofile/groupprofile.component';
 import { GroupmembersComponent } from './groupmembers/groupmembers.component';
+import { ModalforuserprofileComponent } from './modalforuserprofile/modalforuserprofile.component';
+import { LeavegroupComponent } from './leavegroup/leavegroup.component';
+import { CleargroupchatComponent } from './cleargroupchat/cleargroupchat.component';
+import { DeletemessageComponent } from './deletemessage/deletemessage.component';
+import { UseringroupPipe } from '../pipes/useringroup.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,12 @@ import { GroupmembersComponent } from './groupmembers/groupmembers.component';
                  DeletechatComponent,
                  BlockuserComponent,
                  GroupprofileComponent,
-                 GroupmembersComponent,  
+                 GroupmembersComponent,
+                 ModalforuserprofileComponent,
+                 LeavegroupComponent,
+                 CleargroupchatComponent,
+                 DeletemessageComponent,
+                 UseringroupPipe  
                  
   ],
   imports: [
@@ -51,6 +61,6 @@ import { GroupmembersComponent } from './groupmembers/groupmembers.component';
     FormsModule,
     ReactiveFormsModule 
   ],
-  exports:[SearchPipe]
+  exports:[SearchPipe,UseringroupPipe ]
 })
 export class ModalModule { }

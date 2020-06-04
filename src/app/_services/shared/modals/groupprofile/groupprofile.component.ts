@@ -26,6 +26,11 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
   countMembers:number;
   selectedIndexForUser:number;
   listOfUsersGroup:any[]=[];
+  selectedIndex: number = null;
+  image:File=null;
+  imagePrevie: string | ArrayBuffer;
+  
+
 
   constructor(public activeModal:NgbActiveModal,private groupService:GroupService,
     private apiService:ApiService, private route:ActivatedRoute,private modalService: NgbModal) { }
@@ -39,14 +44,16 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
     this.apiService.on('group/get').subscribe(data=>{this.group=data['groups']
                                              
                                               this.title=this.group[0]['title'],
-                                              this.sign= this.transformAvatar(this.group[0]['title']),  
-                                              this.initialAvatarImage=this.group['avatar']['file'['url']]
+                                              this.sign= this.transformAvatar(this.group[0]['title'])  
+                                             // this.initialAvatarImage=this.group['avatar']['file'['url']]
     },error=>console.log(error));
     this.groupService.getMembers(this.groupId)
-    this.apiService.on("group/members").subscribe(data=>{this.groupMembers=data,
+    this.apiService.on("group/members").subscribe(data=>{
                                                          this.countMembers=data['count'],
-                                                         this.listOfUsersGroup=data['users']
-                                                                                                       
+                                                         this.listOfUsersGroup=[...data['users']]
+                                                         this.listOfUsersGroup.forEach(val=> {
+                                                          val.signs=this.transformAvatar(val['name'])
+                                                        })                                                                                                    
     })
   }
   close(){
@@ -57,7 +64,7 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
     var first='';
     var second='';
      switch(str.length){
-       case 1:first=str[0][0].toUpperCase();
+       case 1:first=str[0][0];// добавить позже toUpperCase()
        break;
        case 2:first=str[0][0].toUpperCase(),second=str[1][0].toUpperCase() 
        break;
@@ -77,4 +84,17 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
     this.modalService.open(GroupmembersComponent,{ size: 'sm' } )
     this.activeModal.dismiss();
   }
+  setIndex(index: number) {
+    this.selectedIndex = index;
+  }
+  onFileUpload(event:any){              // загрузка зображення
+    const file=event.target.files[0];
+    this.image=file;
+
+    const reader=new FileReader()
+    reader.onload=()=>{
+      this.imagePrevie=reader.result;
+    }
+    reader.readAsDataURL(file)
+ }
 }

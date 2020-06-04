@@ -1,5 +1,5 @@
 import { ApiService } from './../_services/api.service';
-import {Component, OnInit, ViewChild, ElementRef, AfterViewInit, Output, } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import {AuthService, MessageService} from "../_services";
 import {MatDialog} from "@angular/material/dialog";
 import {ThemePalette} from '@angular/material/core';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 import { EventEmitter } from 'events';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ForwardmodalComponent } from '../_services/shared/modals/forwardmodal/forwardmodal.component';
-import { HttpLoaderFactory } from '../app.module';
+
 import { FocusService } from '../_services/focus.service';
 
 
@@ -68,15 +68,16 @@ export class HomeComponent implements OnInit,AfterViewInit{
      return
    }
    else{
-   this.route.queryParams.subscribe(params=>{this.currentId=+params['userId']
-   this.messageService.sendMessage(message,this.currentId);
-   this.apiservice.on<any>('message/get')
+   this.route.queryParams.subscribe(params=>{this.currentId=+params['userId'], this.currentId= -params['groupId']
+   //this.apiservice.on<any>('message/get').subscribe()
   })
+  this.messageService.sendMessage(message,this.currentId);
    this.inputmesssage.nativeElement.value='';
    this.show=false;
    }
    this.route.queryParams.subscribe(params=>{
     this.messageService.getMessage(+params['userId'],null)
+    this.messageService.getMessage(-params['groupId'],null)
   })
  }
  editMessage(message){
@@ -94,12 +95,12 @@ export class HomeComponent implements OnInit,AfterViewInit{
       modalRef.componentInstance.my_modal_title = 'Choose recipient...';
     }
     deleteMessage(){
-      this.route.queryParams.subscribe(params=>{this.messageId=+params['messageId']
-       this.messageService.deleteMessage(this.messageId);
-    })
-        this.route.queryParams.subscribe(params=>{
-          this.messageService.getMessage(+params['userId'],null)
-        })
+    //   this.route.queryParams.subscribe(params=>{this.messageId=+params['messageId']
+    //    this.messageService.deleteMessage(this.messageId);
+    // })
+    //     this.route.queryParams.subscribe(params=>{
+    //       this.messageService.getMessage(+params['userId'],null)
+    //     })
     }
     cancel(){
         this.selected=false; 
@@ -107,7 +108,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
         select:undefined
     },  queryParamsHandling: 'merge',})
     }
- exit(){
+   exit(){
    localStorage.clear();
    this.router.navigate(['/']);
    this.authService.logout()

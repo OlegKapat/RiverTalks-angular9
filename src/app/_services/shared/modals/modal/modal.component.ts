@@ -7,6 +7,7 @@ import { ForwardmodalComponent } from '../forwardmodal/forwardmodal.component';
 import { RefDirective } from '../../directives/ref.directive';
 import {AlertwindowService} from '../../../alertwindow.service';
 import {MatDialog} from '@angular/material/dialog';
+import { DeletemessageComponent } from '../deletemessage/deletemessage.component';
 
 @Component({
   selector: 'app-modal',
@@ -55,7 +56,9 @@ export class ModalComponent implements OnInit,AfterViewInit {
      
   }
   deleteMessage(){
-    this.alertService.create("You are trying to delete message","Danger",10000,"Danger Alert"); 
+    // this.alertService.create("You are trying to delete message","Danger",10000,"Danger Alert"); 
+    // this.dialog.closeAll();
+    this.modalService.open(DeletemessageComponent,{size:'sm'})
     this.dialog.closeAll();
     
   }
@@ -66,14 +69,4 @@ export class ModalComponent implements OnInit,AfterViewInit {
     )
     this.dialog.closeAll()  
   }
-  showmodal(){
-     // кастомная модалка. Не используется. Потом удалим. 
-    // const modalWindow=this.resolver.resolveComponentFactory(DelmodalComponent)
-    //  const component=this.refDir.containerRef.createComponent(modalWindow)
-    //  component.instance.cancel.subscribe(()=>{
-    //  this.refDir.containerRef.clear()
-    //  })
-  }
- 
- 
 }

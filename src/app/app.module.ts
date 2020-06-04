@@ -28,9 +28,9 @@ import { GroupComponent } from './home/group/group.component';
 import { LeftSideCardComponent } from './home/left-side-card/left-side-card.component';
 import { RefDirective } from './_services/shared/directives/ref.directive';
 import { ModalComponent } from './_services/shared/modals/modal/modal.component';
-import { AlertModule } from './_components/alertwindow/alert.module';
 import { ModalModule } from './_services/shared/modals/modal.module';
 import { MaterialModule } from './_services/shared/material/material.module';
+import { UseringroupPipe } from './_services/shared/pipes/useringroup.pipe';
 
 
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
@@ -63,9 +63,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     ModalModule,
     MaterialModule, 
     HttpClientModule,
-    NgbModule, 
-    AlertModule,
-    
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -82,7 +80,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
   ],
   
   exports:[],
-  providers: [SearchPipe],
+  providers: [SearchPipe,UseringroupPipe],
   bootstrap: [AppComponent],
   entryComponents: [PageComponent]
 })

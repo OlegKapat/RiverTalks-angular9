@@ -1,11 +1,11 @@
-<app-alertwindow></app-alertwindow>
+<!-- <app-alertwindow></app-alertwindow> -->
 <div class="texts" > 
     <ul #id  *ngIf="allmessages$ | async as texts">
-      <li  *ngFor="let text of texts.messages" >
+      <li  *ngFor="let text of texts['messages']" >
         <span id="text.id">
             <div class="item" >
             <div>
-               <i (mouseenter)="messageToTransform(text.id,text.text)"  (contextmenu)="getMessage(text.id,$event,text.text)"  *ngIf="text.to==userId" class="left"> <p class="text">{{ text.text}}</p> <span class="time">{{text.updated | date:'hh:mm' }} 
+               <i (mouseenter)="messageToTransform(text.id,text.text)"  (contextmenu)="getMessage(text.id,$event,text.text)"  *ngIf="text.to==userId || groupId" class="left"> <p class="text">{{ text.text}}</p> <span class="time">{{text.updated | date:'hh:mm' }} 
                    <i *ngIf="text.status_text=='new';else done_all" class="material-icons">done </i><ng-template #done_all ><i class="material-icons">done_all</i></ng-template></span></i>
             </div>
             <div >

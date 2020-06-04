@@ -3,7 +3,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserprofileComponent } from '../userprofile/userprofile.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeletechatComponent } from '../deletechat/deletechat.component';
-import { ClearchatComponent } from '../clearchat/clearchat.component';
+import { CleargroupchatComponent } from '../cleargroupchat/cleargroupchat.component';
 
 @Component({
   selector: 'app-modalforuser',
@@ -11,7 +11,7 @@ import { ClearchatComponent } from '../clearchat/clearchat.component';
   styleUrls: ['./modalforuser.component.css']
 })
 export class ModalforuserComponent implements OnInit {
-
+  
   constructor(private modalService: NgbModal,public dialog:MatDialog) { }
 
   ngOnInit(): void {
@@ -25,7 +25,10 @@ export class ModalforuserComponent implements OnInit {
       this.dialog.closeAll();  
    }
    deleteHistory(){
-      this.modalService.open(ClearchatComponent,{ size: 'sm' } );
+      this.modalService.open(CleargroupchatComponent,{ size: 'sm' });
       this.dialog.closeAll();  
+   }
+   deleteGroup(){
+
    }
 }

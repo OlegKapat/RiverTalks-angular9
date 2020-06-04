@@ -16,14 +16,31 @@
     <button class="tbButton" >
         <i class="material-icons">search</i>
     </button>
-    <mat-form-field class="example-form-field">
+    <mat-form-field class="example-full-width">
         <mat-label>Search name</mat-label>
-        <input matInput type="text" >
+        <input [(ngModel)]="search" matInput >
       </mat-form-field>
     </div>
     <hr>
    <div class="list">
-
+    <ul >
+        <li   class="active" *ngFor="let user of listOfGroupUser | useringroup:search; let i = index"
+        (click)="setIndex(i)"  [class.active]="selectedIndex === i" >
+            <div class="avatar">
+                <a class="gavatar" >
+                    <span class="sign" *ngIf="initialAvatarText; else image">{{user['sign']}}</span>
+                    <ng-template #image>
+                        <img  [src]="initialAvatarImage">
+                    </ng-template> 
+                </a>
+                <span class="name" style="color: black">{{user['name']}}</span>
+                <div class="time">
+                    <i>Last visit {{user['updated'] |  date:'hh:mm' }}</i>
+                </div>    
+            </div>
+             
+        </li>
+    </ul>
    </div>
      
       

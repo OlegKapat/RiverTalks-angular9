@@ -1,12 +1,10 @@
-import { Component, OnInit, Input, AfterViewInit, Output,EventEmitter } from '@angular/core';
-import { ApiService, MessageService } from 'src/app/_services';
-import {Contact} from '../../_models/contact'
+import { Component, OnInit, Input} from '@angular/core';
+import { ApiService } from 'src/app/_services';
 import { ContactService } from 'src/app/_services/contact.service';
 import { Observable, concat, pipe, merge, zip } from 'rxjs';
 import { Router } from '@angular/router';
 import { Group } from 'src/app/_models/group';
 import { GroupService } from 'src/app/_services/group.service';
-import { switchMap, concatMap, map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalforuserComponent } from 'src/app/_services/shared/modals/modalforuser/modalforuser.component';
 import { ModalforgroupComponent } from 'src/app/_services/shared/modals/modalforgroup/modalforgroup.component';
