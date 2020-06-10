@@ -13,9 +13,9 @@
     </div>
 </div>
 <div class="mefor">
-  <div *ngIf="initialAvatarImage; else text">
+  <div *ngIf="urlImage; else text">
     <div class="name"><p >{{title}}</p></div>
-    <div><img class="image" [src]="initialAvatarImage"></div>
+    <div><img class="image" [src]="urlImage"></div>
     <div class="count">
       <i>{{countMembers}} members</i> 
      </div>
@@ -24,8 +24,8 @@
     <ng-template  #text >
       <div class="name"><p >{{title}}</p></div>
       <div class="upload-btn-wrapper">
-        <button type="button" class="gavatar-t ">{{sign}}</button>
-        <input type="file" class="dn"  (change)="onFileUpload($event)">
+        <button type="button" class="gavatar-t" (click)=" openmodalimage()">{{sign}}</button>
+        
       </div>
       
       <div class="count">

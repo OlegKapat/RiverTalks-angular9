@@ -44,7 +44,19 @@ export class GroupService implements OnInit{
         id:id
        })
    }
-  sendAvatar(image):Observable<any>{
-     return this.http.post<any>("https://river-talks.com/file/upload",image)
+   delGroup(id){
+        this.apiService.send({
+          method:"group/del",
+          id:id
+        })
+   }
+
+  sendAvatar(image:File,type:string):Observable<any>{
+    const formData = new FormData();
+    formData.append('file', image);
+    formData.append('session',localStorage.getItem('auth_token'));
+    formData.append('type',type)
+     return this.http.post<any>("https://river-talks.com/file/upload",formData)
   }
+
 }

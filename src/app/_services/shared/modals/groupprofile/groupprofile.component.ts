@@ -6,6 +6,10 @@ import { ApiService } from 'src/app/_services/api.service';
 import { GroupService } from 'src/app/_services/group.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { GroupmembersComponent } from '../groupmembers/groupmembers.component';
+import { ImageforgroupeComponent } from '../imageforgroupe/imageforgroupe.component';
+import { AvatarserviceService } from 'src/app/_services/avatarservice.service';
+import { concat, switchMap } from 'rxjs/operators';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-groupprofile',
@@ -29,17 +33,27 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
   selectedIndex: number = null;
   image:File=null;
   imagePrevie: string | ArrayBuffer;
+  urlImage:string;
   
 
 
   constructor(public activeModal:NgbActiveModal,private groupService:GroupService,
-    private apiService:ApiService, private route:ActivatedRoute,private modalService: NgbModal) { }
+              private apiService:ApiService, private route:ActivatedRoute,
+              private modalService: NgbModal,private avatarServise:AvatarserviceService) { }
 
   ngOnInit(): void {
    
   }
   ngAfterViewInit(){
+     
     this.route.queryParams.subscribe((params:Params)=> this.groupId=+params['groupId']);
+
+    // this.route.queryParams.pipe(concat(this.apiService.on('group/get'), this.apiService.on("group/members"),
+    // this.apiService.on("avatar/get"))).subscribe((data:[any,any,any])=>{console.log(data)}
+    // )
+    this.route.queryParams.pipe(switchMap(val=>this.apiService.on('group/get'))).subscribe(data=>console.log(data)
+    )
+    
     this.groupService.getGroup(this.groupId);
     this.apiService.on('group/get').subscribe(data=>{this.group=data['groups']
                                              
@@ -55,6 +69,8 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
                                                           val.signs=this.transformAvatar(val['name'])
                                                         })                                                                                                    
     })
+    this.avatarServise.getAvatar(this.groupId)
+    this.apiService.on("avatar/get").subscribe(data=>this.urlImage=data['avatars'][0]['file']['url'])
   }
   close(){
     this.activeModal.dismiss()
@@ -87,14 +103,8 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
   setIndex(index: number) {
     this.selectedIndex = index;
   }
-  onFileUpload(event:any){              // загрузка зображення
-    const file=event.target.files[0];
-    this.image=file;
-
-    const reader=new FileReader()
-    reader.onload=()=>{
-      this.imagePrevie=reader.result;
-    }
-    reader.readAsDataURL(file)
- }
+  openmodalimage(){
+    this.modalService.open(ImageforgroupeComponent,{size:'sm'} )
+    this.activeModal.close()
+  }
 }

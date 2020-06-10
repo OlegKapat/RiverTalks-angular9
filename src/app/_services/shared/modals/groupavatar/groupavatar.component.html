@@ -1,0 +1,12 @@
+<h4>List of files</h4>
+
+<div>
+    <ul>
+        <li (click)="getImage(image.id)" *ngFor="let image of avatar">
+            <img [src]="image.url">
+        </li>
+    </ul>
+</div>
+<div class="btn-group">
+    <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
+</div>

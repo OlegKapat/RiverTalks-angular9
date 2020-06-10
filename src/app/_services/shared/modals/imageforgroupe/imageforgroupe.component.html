@@ -1,0 +1,12 @@
+<h4>Set image for {{title}}</h4>
+   
+<div class="upload-btn-wrapper">
+    <button *ngIf="!imagePrevie" class="btnn" type="button" ><img src="../../../../../assets//devimages//camera-1085705_640.png"></button>
+    <input class="inputfile" type="file" name="myfile" (change)="onFileUpload($event)" />
+    <img  [src]="imagePrevie" *ngIf="imagePrevie" >
+</div>
+<div class="btn-group">
+    <button mat-raised-button color="primary" [disabled]="!image" (click)="uploadPhoto()">Upload</button>
+    <button mat-raised-button color="primary"(click)="addPhoto()">Set Avatar</button>
+    <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
+  </div>

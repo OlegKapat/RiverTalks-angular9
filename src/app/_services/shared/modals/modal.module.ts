@@ -26,6 +26,9 @@ import { LeavegroupComponent } from './leavegroup/leavegroup.component';
 import { CleargroupchatComponent } from './cleargroupchat/cleargroupchat.component';
 import { DeletemessageComponent } from './deletemessage/deletemessage.component';
 import { UseringroupPipe } from '../pipes/useringroup.pipe';
+import { ImageforgroupeComponent } from './imageforgroupe/imageforgroupe.component';
+import { GroupavatarComponent } from './groupavatar/groupavatar.component';
+import { DeletegroupComponent } from './deletegroup/deletegroup.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { UseringroupPipe } from '../pipes/useringroup.pipe';
                  LeavegroupComponent,
                  CleargroupchatComponent,
                  DeletemessageComponent,
-                 UseringroupPipe  
+                 UseringroupPipe,
+                 ImageforgroupeComponent,
+                 GroupavatarComponent,
+                 DeletegroupComponent  
                  
   ],
   imports: [

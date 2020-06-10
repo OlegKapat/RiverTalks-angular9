@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GroupprofileComponent } from '../groupprofile/groupprofile.component';
 import { LeavegroupComponent } from '../leavegroup/leavegroup.component';
 import { CleargroupchatComponent } from '../cleargroupchat/cleargroupchat.component';
+import { DeletegroupComponent } from '../deletegroup/deletegroup.component';
 
 @Component({
   selector: 'app-modalforgroup',
@@ -29,6 +30,7 @@ export class ModalforgroupComponent implements OnInit {
     this.dialog.closeAll();  
  }
   deleteGroup(){
-
+      this.modalService.open(DeletegroupComponent,{ size: 'sm' });
+      this.dialog.closeAll();
   }
 }
