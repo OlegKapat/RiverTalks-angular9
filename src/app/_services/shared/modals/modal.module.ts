@@ -30,6 +30,8 @@ import { ImageforgroupeComponent } from './imageforgroupe/imageforgroupe.compone
 import { GroupavatarComponent } from './groupavatar/groupavatar.component';
 import { DeletegroupComponent } from './deletegroup/deletegroup.component';
 import { AddmembertogroupComponent } from './addmembertogroup/addmembertogroup.component';
+import { GroupmembderwithaddComponent } from './groupmembderwithadd/groupmembderwithadd.component';
+import { ManagegroupComponent } from './managegroup/managegroup.component';
 
 @NgModule({
   declarations: [
@@ -60,8 +62,11 @@ import { AddmembertogroupComponent } from './addmembertogroup/addmembertogroup.c
                  ImageforgroupeComponent,
                  GroupavatarComponent,
                  DeletegroupComponent,
-                 AddmembertogroupComponent  
-                 
+                 AddmembertogroupComponent,
+                 GroupmembderwithaddComponent,
+                 LeavegroupComponent,
+                 ManagegroupComponent
+
   ],
   imports: [
     CommonModule,

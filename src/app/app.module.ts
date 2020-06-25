@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
@@ -82,7 +82,8 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
   exports:[],
   providers: [SearchPipe,UseringroupPipe,UseringroupPipe ],
   bootstrap: [AppComponent],
-  entryComponents: [PageComponent]
+  entryComponents: [PageComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
 }
