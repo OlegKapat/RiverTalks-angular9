@@ -51,21 +51,21 @@
     <button mat-menu-item (click)="manageGroup()">
       <span>Manage group</span>
     </button>
-    <button mat-menu-item  >
+    <button mat-menu-item (click)="addMembers()" >
         <span>Add Members</span>
    </button>
-   <button mat-menu-item >
+   <button mat-menu-item (click)="deleteChat()">
     <span>Delete chart</span>
   </button>
-  <button mat-menu-item >
+  <!-- <button mat-menu-item >
     <span>Create poll</span>
-  </button>
-  <button mat-menu-item  >
+  </button> -->
+  <button mat-menu-item {click}="leaveGroup()" >
     <span>Delete and leave</span>
   </button>
-  <button mat-menu-item  >
+  <!-- <button mat-menu-item  >
     <span>Clear history</span>
-  </button>
+  </button> -->
   </mat-menu>
   <hr>
   <div class="userlist">

@@ -31,6 +31,7 @@ import { ModalComponent } from './_services/shared/modals/modal/modal.component'
 import { ModalModule } from './_services/shared/modals/modal.module';
 import { MaterialModule } from './_services/shared/material/material.module';
 import { UseringroupPipe } from './_services/shared/pipes/useringroup.pipe';
+import { LoginwithphoneComponent } from './loginwithphone/loginwithphone.component';
 
 
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
@@ -50,8 +51,8 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     ContactComponent,
     GroupComponent,
     LeftSideCardComponent,
-    RefDirective
-   
+    RefDirective,
+    LoginwithphoneComponent
                  
   ],
   imports: [

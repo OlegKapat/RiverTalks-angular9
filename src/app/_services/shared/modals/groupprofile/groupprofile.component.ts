@@ -11,6 +11,8 @@ import { AvatarserviceService } from 'src/app/_services/avatarservice.service';
 import { concat, switchMap } from 'rxjs/operators';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { ManagegroupComponent } from '../managegroup/managegroup.component';
+import { AddmembertogroupComponent } from '../addmembertogroup/addmembertogroup.component';
+import { DeletegroupComponent } from '../deletegroup/deletegroup.component';
 
 @Component({
   selector: 'app-groupprofile',
@@ -110,5 +112,16 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
   }
   manageGroup(){
     this.modalService.open(ManagegroupComponent,{size:"md"})
+  }
+  addMembers(){
+    this.modalService.open(AddmembertogroupComponent,{size:"md"})
+  }
+  deleteChat(){
+    this.modalService.open(DeletegroupComponent,{size:"sm"})
+    this.activeModal.close()
+  }
+  leaveGroup(){
+    this.modalService.open(DeletegroupComponent,{size:"sm"})
+    this.activeModal.close()
   }
 }

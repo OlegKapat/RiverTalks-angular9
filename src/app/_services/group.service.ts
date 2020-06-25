@@ -11,7 +11,7 @@ export class GroupService implements OnInit{
     ngOnInit(){
 
     }
-    addGroup(title:string,alias){
+    addGroup(title,alias){
         this.apiService.send({
             method:"group/new",
             title:title,

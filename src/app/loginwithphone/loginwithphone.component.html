@@ -9,11 +9,11 @@
                         <h3 class="text-center text-info">Enter</h3>
                         <div class="form-group" *ngIf="!isCode">
                             <label for="username" class="text-info">Phone number:</label><br>
-                            <input type="text" name="username" placeholder="+380XX-XXX-XX-XX" id="username" class="form-control">
+                            <input #phonenumber type="text" name="username" placeholder="+380XX-XXX-XX-XX" id="username" class="form-control">
                         </div>
                         <div class="form-group" *ngIf="isCode">
                             <label for="password" class="text-info">Code:</label><br>
-                            <input type="text" name="password" placeholder="ENTER SMS CODE" id="password" class="form-control">
+                            <input #code type="text" name="password" placeholder="ENTER SMS CODE" id="password" class="form-control">
                         </div>
                         <div class="form-group">
                             <input  *ngIf='!isCode' (click)="sendRequestForCode()" type="submit" name="submit" class="btn btn-info btn-md" [value]="'SEND'">

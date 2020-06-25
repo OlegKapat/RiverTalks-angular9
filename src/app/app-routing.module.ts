@@ -9,10 +9,11 @@ import {AuthService} from './_services';
 import {LogoutComponent} from "./logout";
 import {PageComponent} from "./page";
 import {AuthGuard} from './_services/authguard'
+import { LoginwithphoneComponent } from './loginwithphone/loginwithphone.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
-  {path: 'login', component: LoginComponent},
+  {path: '', component: LoginwithphoneComponent},
+  {path: 'login', component: LoginwithphoneComponent },
   {path: 'logout', component: LogoutComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'restore-password', component: RestorePasswordComponent},
