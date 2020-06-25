@@ -42,19 +42,26 @@ export class ContactComponent implements OnInit {
  
   //zip(this.allgroups$,this.allcontacts$).pipe(map(x=>this.contactform=[x[0]['groups'],x[1]['contacts']])).subscribe(data=>console.log(data))
   zip(this.allgroups$,this.allcontacts$).subscribe(data=>{this.contactform=[data[0]['groups'],data[1]['contacts']]
+  
     if(this.contactform){
       this.contactform[1].forEach(value=>{   
         if(value['user']['avatar']['file']['url'] ==""){
          value.sign= this.transformAvatar(value['user']['name'])
         }
         else{
-          this.initialAvatarImage=value['user']['avatar']['file']['url'] 
+          value.url=value['user']['avatar']['file']['url'] 
         }
       })
     }
     if(this.contactform){
       this.contactform[0].forEach(value=>{  
-         value.sign= this.transformAvatar(value['title']) 
+        if(value['avatar']['file']['url'] ==""){
+          value.sign= this.transformAvatar(value['title']) 
+        }
+        else{
+          value.url=value['avatar']['file']['url']
+        }
+         
       })
     }
    })

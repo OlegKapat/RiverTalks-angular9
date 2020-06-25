@@ -80,7 +80,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
   ],
   
   exports:[],
-  providers: [SearchPipe,UseringroupPipe],
+  providers: [SearchPipe,UseringroupPipe,UseringroupPipe ],
   bootstrap: [AppComponent],
   entryComponents: [PageComponent]
 })

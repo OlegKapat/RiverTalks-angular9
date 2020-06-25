@@ -29,6 +29,7 @@ import { UseringroupPipe } from '../pipes/useringroup.pipe';
 import { ImageforgroupeComponent } from './imageforgroupe/imageforgroupe.component';
 import { GroupavatarComponent } from './groupavatar/groupavatar.component';
 import { DeletegroupComponent } from './deletegroup/deletegroup.component';
+import { AddmembertogroupComponent } from './addmembertogroup/addmembertogroup.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { DeletegroupComponent } from './deletegroup/deletegroup.component';
                  UseringroupPipe,
                  ImageforgroupeComponent,
                  GroupavatarComponent,
-                 DeletegroupComponent  
+                 DeletegroupComponent,
+                 AddmembertogroupComponent  
                  
   ],
   imports: [
@@ -67,6 +69,6 @@ import { DeletegroupComponent } from './deletegroup/deletegroup.component';
     FormsModule,
     ReactiveFormsModule 
   ],
-  exports:[SearchPipe,UseringroupPipe ]
+  exports:[SearchPipe,UseringroupPipe,UseringroupPipe]
 })
 export class ModalModule { }

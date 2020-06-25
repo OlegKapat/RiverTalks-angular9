@@ -6,9 +6,9 @@
         (click)="getAllMessage(contact['user_id']);setIndex(i)"  [class.active]="selectedIndex === i"  >
             <div class="avatar">
                 <a class="gavatar">
-                    <span *ngIf="initialAvatarText; else image">{{contact['sign']}}</span>
+                    <span *ngIf="contact['sign']; else image">{{contact['sign']}}</span>
                     <ng-template #image>
-                        <img  [src]="initialAvatarImage">
+                        <img  [src]="contact['url']">
                     </ng-template> 
                 </a>
                 <span style="color: black;">{{contact['user']['name']}}</span>
@@ -27,9 +27,9 @@
         (click)="getGroupMessage(contact['id']);setIndexForGroup(i)"  [class.active]="selectedIndexForGroup === i"  >
             <div class="avatar">
                 <a class="gavatar">
-                    <span *ngIf="initialAvatarText; else image">{{contact['sign']}}</span>
+                    <span *ngIf="contact['sign']; else image">{{contact['sign']}}</span>
                     <ng-template #image>
-                        <img  [src]="initialAvatarImage">
+                        <img  [src]="contact['url']">
                     </ng-template> 
                 </a>
                 <span style="color: black;">{{contact['title']}}</span>

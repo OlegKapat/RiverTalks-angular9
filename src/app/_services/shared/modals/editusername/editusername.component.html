@@ -1,0 +1,15 @@
+<div>
+    <h4>Edit your name</h4>
+    <mat-form-field class="example-full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput #name >
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput #last>
+      </mat-form-field>
+      <div class="btn-group">
+        <button mat-raised-button color="primary" (click)="editName(name.value+'\ '+last.value)">Edit</button>
+        <button mat-raised-button color="primary" (click)="activeModal.dismiss()">Cancel</button>
+      </div>
+</div>

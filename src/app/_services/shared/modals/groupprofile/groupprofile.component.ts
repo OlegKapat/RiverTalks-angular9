@@ -10,6 +10,7 @@ import { ImageforgroupeComponent } from '../imageforgroupe/imageforgroupe.compon
 import { AvatarserviceService } from 'src/app/_services/avatarservice.service';
 import { concat, switchMap } from 'rxjs/operators';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { ManagegroupComponent } from '../managegroup/managegroup.component';
 
 @Component({
   selector: 'app-groupprofile',
@@ -106,5 +107,8 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
   openmodalimage(){
     this.modalService.open(ImageforgroupeComponent,{size:'sm'} )
     this.activeModal.close()
+  }
+  manageGroup(){
+    this.modalService.open(ManagegroupComponent,{size:"md"})
   }
 }

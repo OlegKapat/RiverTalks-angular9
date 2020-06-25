@@ -59,9 +59,10 @@ export class AuthService implements OnInit{
     this.currentUserS.subscribe(user => {
       this.currentUser = user
       
-      if (user && user.id && this.router.url.split('?')[0] === "/login") {
+      if (user) {
         this.router.navigate(['/home'])
       }
+      //&& user.id && this.router.url.split('?')[0] === "/login"
     })
 
     this.apiService.status.subscribe(isConnected => {
@@ -76,6 +77,7 @@ export class AuthService implements OnInit{
   setToken(token:string){
      this.token=token;
   }
+  
   processUser(data) {
     if (data.status) {
       this.currentUserS.next(data.user);
@@ -89,7 +91,7 @@ export class AuthService implements OnInit{
       this.lastErrorS.next(data.error);
     }
   }
-
+  
   autoLogin() {
     this.lastErrorS.next(null);
     var authToken = localStorage.getItem('auth_token');
@@ -129,7 +131,18 @@ export class AuthService implements OnInit{
       phone: user.phone,
     });
   }
-  
+  loginWithPnone(phone){
+    this.apiService.send({
+      method:"user/login",
+      phone:phone
+    })
+  }
+  sendSms(code){
+    this.apiService.send({
+      method:"user/sms",
+      code:code
+    })
+  }
   logout() {
     this.lastErrorS.next(null);
     if (this.currentUser) {

@@ -1,0 +1,30 @@
+li{
+    list-style: none;
+    margin-left: 10px;
+    display: inline;
+}
+li:hover{
+    cursor: pointer;
+}
+h4{
+    text-align: center;
+    margin-top: 10px;
+}
+img{
+    width: 60px;
+    height: 60px;
+}
+button{
+  margin-left: 5px;
+}
+.btn-group{
+    margin:20px 0 20px 30%;
+}
+.active{
+    border: 5px;
+    background: rgb(77, 75, 75);
+    background-clip: padding-box; 
+    border: solid border transparent; 
+    border-radius: 1em;
+}
+ 

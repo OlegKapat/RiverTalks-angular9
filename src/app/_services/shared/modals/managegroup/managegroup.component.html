@@ -1,0 +1,41 @@
+
+<div class="modal-newgroup">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h4 class="modal-title">Edit group</h4>
+            <form class="example-form">
+               <div class="upload-btn-wrapper">
+                <button *ngIf="!imagePrevie" class="btnn" type="button" ><img src="../../../../../assets//devimages//camera-1085705_640.png"></button>
+                <input class="inputfile"  type="file" name="myfile" (change)="onFileUpload($event)" />
+                <img  [src]="imagePrevie" *ngIf="imagePrevie" >
+                <mat-form-field class="example-full-width1">
+                  <mat-label>Group name</mat-label>
+                  <input #groupname [value]="title" matInput  class="inputname">
+                </mat-form-field>
+                <mat-form-field class="example-full-width1 optional">
+                  <label for option>Description (optional)</label>
+                  <input #description id="option" matInput  class="inputname">
+                </mat-form-field>
+              </div>
+              </form>
+              
+              
+        </div>
+        <hr>
+    </div>
+    <div class="item" (click)="getAdministrators()" >
+      <mat-icon class="icon-two">star_border</mat-icon>
+      <i class="members-two"> Administrators</i> 
+      <span class="number-two">{{numberMembers}}</span>   
+    </div>
+    <div class="item-two"(click)="getMembers()" >
+      <mat-icon class="icon">people</mat-icon>
+      <i class="members"> Members</i> 
+      <span class="number">{{numberMembers}}</span>   
+    </div>
+    <div class="btn-group">
+      <button mat-raised-button color="primary"(click)="edit(groupname.value,description.value)">Edit</button>
+      <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
+    </div>
+</div>
+

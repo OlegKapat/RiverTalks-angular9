@@ -1,0 +1,86 @@
+.search{
+  display: inline-block;
+  margin: 10px 0 10px 30px;
+}
+.example-full-width{
+  margin-left: 10px;
+  width: 300px;
+}
+h4{
+ margin: 30px 0 10px 30px;
+}
+hr{
+width: 400px;
+margin-top: 0;
+}
+button{
+margin-left: 10px;
+}
+.btn-group{
+margin-left: 50%;
+margin-bottom: 30px;
+}
+.gavatar{
+color: rgb(255, 255, 255); background-color: #c6c699;
+display: inline-block; font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+font-size: 14px;
+border-radius: 80px; 
+width: 40px;
+height: 40px; 
+line-height: 40px;
+margin: 10px; 
+text-align: center;
+}   
+.input{
+width: 300px !important;
+border-bottom: 1px solid rgb(141, 138, 138);
+} 
+li:hover{
+background-color:#EEEEEE;
+cursor: pointer;
+}
+ul{
+padding-left: 0px;
+}
+span{
+color: black;
+}
+img{
+width: 40px;
+height: 40px;
+border-radius: 50% 50%;
+}
+
+.choosen {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
+  color: rgb(250, 104, 104);
+  box-shadow: 5px 5px rgba(0,0,0,.15);
+  transition: all .4s ease;
+}
+.choosen:hover {
+  border-radius: 0% 0% 50% 50% / 0% 0% 5% 5% ;
+  box-shadow: 10px 10px rgba(0,0,0,.25);
+}
+
+li{
+list-style-type: none;
+}
+.sign{
+color: rgb(219, 157, 157);
+font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+}
+.name{
+font-family: 'Roboto', sans-serif;
+}
+
+i{
+  float:right;
+  color:#a39f9f;
+  font-weight: 100;
+  font-size: 10px;
+  margin: 23px 10px 0 0;
+}

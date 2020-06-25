@@ -58,5 +58,20 @@ export class GroupService implements OnInit{
     formData.append('type',type)
      return this.http.post<any>("https://river-talks.com/file/upload",formData)
   }
+    updateGroup(id,title,description){
+        this.apiService.send({
+            method:"group/update",
+            id:id,
+            title:title,
+            description:description
 
+        })
+    }
+    inviteGroup(userId,groupId){
+        this.apiService.send({
+            method:"group/invite",
+            id:groupId,
+            user_id:userId
+        })
+    }
 }

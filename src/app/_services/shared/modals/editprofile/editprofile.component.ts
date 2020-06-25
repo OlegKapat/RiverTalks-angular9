@@ -19,7 +19,8 @@ export class EditprofileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUser();
-    this.apiService.on('user/get').subscribe(data=>{this.user=data
+    this.apiService.on('user/get').subscribe(data=>{this.user=data,console.log(this.user)
+    
     },error=>console.log(error));
     
   }

@@ -1,0 +1,40 @@
+<div class="modal-newgroup">
+    <div class="modal-header">
+        <div class="modal-title">
+            <div class="title">
+                <h4 class="modal-title">Members</h4>
+            </div> 
+        </div>
+    </div>
+    <div class="search">
+        <span class="material-icons">search</span>
+         <mat-form-field class="example-full-width">
+        <mat-label>Search name</mat-label>
+        <input [(ngModel)]="search" matInput class="input">
+      </mat-form-field>
+    </div>
+    <hr>
+   <div class="list">
+    <ul >
+        <li   class="active" *ngFor="let user of listOfGroupUser | useringroup:search; let i = index"
+        (click)="setIndex(i)"  [class.active]="selectedIndex === i" >
+            <div class="avatar">
+                <a class="gavatar" >
+                    <span class="sign" *ngIf="initialAvatarText; else image">{{user['sign']}}</span>
+                    <ng-template #image>
+                        <img  [src]="initialAvatarImage">
+                    </ng-template> 
+                </a>
+                <span class="name" style="color: black">{{user['name']}}<i>Last visit {{user['updated'] |  date:'hh:mm' }}</i></span>
+                 
+            </div>
+             
+        </li>
+    </ul>
+   </div>
+   <div class="btn-group">
+    <button mat-raised-button color="primary" (click)="addMembers()">Add Members</button>
+    <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
+  </div>
+      
+    </div>

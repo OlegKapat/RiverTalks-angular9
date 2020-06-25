@@ -1,0 +1,37 @@
+<div class="modal-newgroup">
+        <div class="modal-title">
+            <h4 class="modal-title">Add Members {{''}}</h4>
+            <div class="search">
+                <span class="material-icons">search</span>
+                <mat-form-field class="example-full-width">
+                <mat-label>Search contact</mat-label>
+                <input [(ngModel)]="search" class="input"  matInput >
+                </mat-form-field>
+            </div>
+           <hr>
+           <div id="userlist">
+            <ul >
+                <li class="active" *ngFor="let contact of contactform | search:search let i = index" 
+                (click)="setIndex(i);getId(contact['user_id'])"  [class.active]="selectedIndex === i"  >
+                    <div class="avatar">
+                        <a class="gavatar" [class.choosen]="selectedIndex === i" >
+                            <span class="sign" *ngIf="contact['sign']; else image">{{contact['sign']}}</span>
+                            <ng-template #image>
+                                <img  [src]="contact['url']">
+                            </ng-template> 
+                        </a>
+                        <span class="name" style="color: black;">{{contact['user']['name']}} <i>Last visit {{contact['updated'] |  date:'hh:mm' }}</i></span>
+                       
+                    </div>
+                  
+                </li>
+            </ul>
+        </div>
+              <div class="btn-group">
+              <button mat-raised-button color="primary" (click)="addToGroup()">Add</button>
+              <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
+            </div>
+          
+        </div>
+</div>
+

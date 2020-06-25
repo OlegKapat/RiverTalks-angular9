@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 const MaterialComponent=[
   MatSidenavModule,
@@ -26,13 +27,13 @@ const MaterialComponent=[
   MatButtonModule,
   MatFormFieldModule,
   MatDividerModule,
-  MatCheckboxModule
+  MatCheckboxModule,
 ]
-
 
 @NgModule({
   imports: [MaterialComponent],
   exports:[MaterialComponent],
-  
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+ 
 })
 export class MaterialModule { }

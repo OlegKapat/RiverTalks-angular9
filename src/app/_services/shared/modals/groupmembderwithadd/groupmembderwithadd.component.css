@@ -1,0 +1,80 @@
+.modal-title{
+    display: inline;
+    width: 100%;
+  	text-align: center;
+}
+.search{
+    display: inline-block;
+    margin: 10px 0 10px 20px;
+  }
+.tbButton:hover {
+	color: #555;
+	background: #DDD;
+}
+button {
+	cursor: pointer;
+}
+button, input[type="search"], input[type="text"] {
+	border: none;
+	outline: none;
+}
+.title{
+	display: inline;
+}
+.otherOptions{
+    float: right;
+}
+
+.gavatar{
+    color: rgb(255, 255, 255); 
+    background-color: #c6c699;
+    display: inline-block; 
+    font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+    font-size: 14px;
+    border-radius: 80px; 
+    width: 40px; 
+    height: 40px; 
+    line-height: 40px;
+    margin: 5px; 
+    text-align: center;
+ }    
+ li{
+     list-style: none;
+     margin-left: -40px;     
+ }
+
+ i{
+    color:#a39f9f;
+    font-weight: 100;
+    font-size: 10px;
+    margin-right: 5px;
+    float:right;
+    margin-top: 15px;
+}
+.active{
+    background-color: rgb(174, 174, 218);
+}
+.sign{
+    color: rgb(219, 157, 157);
+    font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+}
+.input{
+    width: 200px !important;
+    } 
+.avatar:hover{
+    background-color:#EEEEEE;
+    cursor: pointer;
+}
+.name{
+   font-family: 'Roboto', sans-serif;
+}
+button{
+  margin-right: 20px;
+}
+.btn-group{
+  margin:20px 0 10px 20%;
+}
+mat-form-field{
+    margin-left: 10px;
+    padding: 0 !important;
+}

@@ -21,30 +21,25 @@
         <p class="name">{{user['user']['name']}}</p>
         </div>
         <div class="upload-btn-wrapper">
-            <button type="button"  target="_blank" class="themeBtn btnn">SET PROFILE PHOTO</button>
+           
             <input class="inputfile" type="file" name="myfile" (change)="onFileUpload($event)" />
-            <div>
-                <img class="image" [src]="imagePrevie" *ngIf="imageView" >
-                <div *ngIf="imageView">
-                    <button  mat-button color="primary" (click)="setImageAvatar()">Ok</button>
-                    <button  mat-button color="primary" (click)="clearImage()">Cancel</button>
-                </div>
-            </div>
-           
-           
         </div>
       </div>
       <div class="userInfo">
-            <mat-icon>perm_identity</mat-icon>
-            <span class="userName">{{user['user']['name']}}</span>
-            <div class="label">
-                <mat-label>Name</mat-label>
-            </div>
-            <mat-icon>call</mat-icon>
-            <span class="userPhone">{{user['user']['phone']}}</span>
-            <div class="label">
-                <mat-label>Phone</mat-label>
-            </div>
+          <div class="items">
+              <div class="item">
+                  <mat-icon>call</mat-icon>
+              </div>
+              <div>
+                <span>{{user['user']['phone']}}</span>
+                <p>Phone Number</p>
+
+              </div>
+              <div>
+                  <mat-icon>edit</mat-icon>
+              </div>
+
+          </div>
             
       </div>
       
