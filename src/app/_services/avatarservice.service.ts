@@ -21,4 +21,15 @@ export class AvatarserviceService {
         group_id:id
        })
   }
+  sendFile(image,type){
+    this.apiService.send({
+      method:""
+    })
+  }
+  userAvatar(id){
+    this.apiService.send({
+      method:"user/avatar",
+      file_id:id
+    })
+  }
 }

@@ -26,5 +26,25 @@ export class UserService {
    id:id
   })
 }
- 
+userUpdate(name){
+  this.apiService.send({
+    method:"user/update",
+    name:name
+  
+  })
+}
+mailUpdate(mail){
+  this.apiService.send({
+    method:"user/update",
+    email:mail
+  
+  })
+}
+phoneUpdate(phone){
+  this.apiService.send({
+    method:"user/update",
+    phone:phone
+  
+  })
+}
 }

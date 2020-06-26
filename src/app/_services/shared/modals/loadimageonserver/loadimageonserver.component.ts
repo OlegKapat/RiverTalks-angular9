@@ -38,8 +38,8 @@ export class LoadimageonserverComponent implements OnInit, OnDestroy {
   uploadFile() {
     this.avatarService
       .sendFile(this.image, this.type)
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((data) => console.log(data));
+      // .pipe(takeUntil(this.destroyed$))
+      // .subscribe((data) => console.log(data));
   }
   addFile() {
     this.modalService.open(SendfileinchatComponent, { size: "md" });

@@ -15,34 +15,100 @@
     </div>
  
     <div class="mefor">
-        <img   class="image" *ngIf="user['user']['photo']!==''; else photo"  src="../../../assets//devimages//shutter-1237250_640.png">
+       <p><img  class="image" *ngIf="user['user']['name']!==''; else photo"  src="../../../../../assets/devimages/camera-1085705_640.png">{{user['user']['name']}} </p> 
         <ng-template #photo><img class="image" src="user['user']['photo']"></ng-template>
-        <div class="myinfo">
-        <p class="name">{{user['user']['name']}}</p>
-        </div>
-        <div class="upload-btn-wrapper">
+       <img (click)="setImageAvatar()" class="image-btn" src="../../../../../assets/devimages/camera-1085705_640.png">
+        <!-- <div class="upload-btn-wrapper">
            
             <input class="inputfile" type="file" name="myfile" (change)="onFileUpload($event)" />
-        </div>
+        </div> -->
       </div>
       <div class="userInfo">
-          <div class="items">
+        <h4>Account</h4>
+          <div class="items" (click)="changePhone()">
               <div class="item">
-                  <mat-icon>call</mat-icon>
+                <mat-icon class="icon ">call</mat-icon>
               </div>
-              <div>
-                <span>{{user['user']['phone']}}</span>
-                <p>Phone Number</p>
+              <div class="item">
+                <span class="icon icon-top">{{user['user']['phone']}}</span>
+                <div><i class="tik">Phone Number</i></div>
 
               </div>
-              <div>
-                  <mat-icon>edit</mat-icon>
+              <div class="item pen">
+                  <mat-icon class="icon pens">edit</mat-icon>
               </div>
 
           </div>
-            
+          <div class="items" (click)="changeMail()">
+            <div class="item">
+              <mat-icon class="icon ">mail</mat-icon>
+            </div>
+            <div class="item">
+              <span class="icon icon-top">{{"bombastik@ukr.net"}}</span>
+              <div><i class="tik">Email</i></div>
+
+            </div>
+            <div class="item pen">
+                <mat-icon class="icon pens">edit</mat-icon>
+            </div>
+
+        </div>
+        <div class="items" (click)="changeName()">
+            <div class="item">
+              <mat-icon class="icon ">alternate_email</mat-icon>
+            </div>
+            <div class="item">
+              <span class="icon icon-top">{{user['user']['name']}}</span>
+              <div><i class="tik">UserName</i></div>
+
+            </div>
+            <div class="item pen">
+                <mat-icon class="icon pens">edit</mat-icon>
+            </div>
+        </div>
+        <div class="items">
+            <div class="item">
+              <mat-icon class="icon ">how_to_reg</mat-icon>
+            </div>
+            <div class="item">
+              <span class="icon icon-top">{{user['user']['partner_id']}}</span>
+              <div><i class="tik">Partner</i></div>
+
+            </div>
+            <!-- <div class="item">
+                <mat-icon class="icon ">edit</mat-icon>
+            </div> -->
+
+        </div>
+        <div class="items">
+            <div class="item">
+              <mat-icon class="icon ">attach_money</mat-icon>
+            </div>
+            <div class="item">
+              <span class="icon icon-top">Balance {{user['user']['balance']}}</span>
+              <div><i class="tik">Current Balance</i></div>
+
+            </div>
+            <!-- <div class="item">
+                <mat-icon class="icon ">edit</mat-icon>
+            </div> -->
+
+        </div>
+        <hr>
+        <div class="items bottom">
+         <div class="item">
+           <mat-icon class="icon ">notifications</mat-icon>
+         </div>
+         <div class="item">
+           <span class="icon icon-top">Private Account</span>
+         </div>
+         <div class="item check">
+             <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled"></mat-slide-toggle>
+         </div>
       </div>
-      
+     
+
     </div>
+   
 
 

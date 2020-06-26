@@ -13,6 +13,7 @@
 	margin-top: 20px;
 	margin-left: 20px;
 }
+
 .tbButton {
 	float: left;
 	width: 40px;
@@ -70,13 +71,14 @@ mat-slide-toggle{
 .item{
 	position: relative;
 	text-align: center;
+	
 }
 .icon{	
 	position: absolute;
 	margin-left: -100px;	
 }
 .icon-top{
-	margin-top: 5px;
+	margin-top: 10px;
 }
 .item :hover{
 	background: rgb(211, 210, 210);

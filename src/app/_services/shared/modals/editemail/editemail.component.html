@@ -1,0 +1,13 @@
+
+<div>
+    <h4>Edit your Email</h4>
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput #mail >
+      </mat-form-field>
+      
+      <div class="btn-group">
+        <button mat-raised-button color="primary" (click)="editMail(mail.value)">Edit</button>
+        <button mat-raised-button color="primary" (click)="activeModal.dismiss()">Cancel</button>
+      </div>
+</div>

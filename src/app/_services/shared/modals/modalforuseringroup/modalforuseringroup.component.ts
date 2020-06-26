@@ -34,6 +34,8 @@ export class ModalforuseringroupComponent
   }
   banUser() {
     this.groupService.banUser(this.groupId, this.userId);
+    console.log(this.groupId, this.userId);
+
     this.dialog.closeAll();
     this.router.navigate(["home"], {
       queryParams: {
@@ -56,7 +58,7 @@ export class ModalforuseringroupComponent
     this.destroy$.next(true);
     this.destroy$.complete();
   }
-  kickUser(){
+  kickUser() {
     this.groupService.kickUser(this.groupId, this.userId);
     this.dialog.closeAll();
     this.router.navigate(["home"], {

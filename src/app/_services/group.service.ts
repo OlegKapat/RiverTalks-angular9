@@ -2,6 +2,7 @@ import { Injectable, OnInit } from "@angular/core";
 import { ApiService } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AbstractFormGroupDirective } from '@angular/forms';
 
 @Injectable({
     providedIn:'root'
@@ -70,6 +71,27 @@ export class GroupService implements OnInit{
     inviteGroup(userId,groupId){
         this.apiService.send({
             method:"group/invite",
+            id:groupId,
+            user_id:userId
+        })
+    }
+    kickUser(groupId,userId){
+        this.apiService.send({
+            method:"group/kick",
+            id:groupId,
+            user_id:userId
+        })
+    }
+    banUser(groupId,userId){
+        this.apiService.send({
+            method:"group/ban",
+            id:groupId,
+            user_id:userId
+        })
+    }
+    unbanUser(groupId,userId){
+        this.apiService.send({
+            method:"group/unban",
             id:groupId,
             user_id:userId
         })

@@ -32,6 +32,9 @@ import { DeletegroupComponent } from './deletegroup/deletegroup.component';
 import { AddmembertogroupComponent } from './addmembertogroup/addmembertogroup.component';
 import { GroupmembderwithaddComponent } from './groupmembderwithadd/groupmembderwithadd.component';
 import { ManagegroupComponent } from './managegroup/managegroup.component';
+import { EditusernameComponent } from './editusername/editusername.component';
+import { EditemailComponent } from './editemail/editemail.component';
+import { EditphoneComponent } from './editphone/editphone.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { ManagegroupComponent } from './managegroup/managegroup.component';
                  AddmembertogroupComponent,
                  GroupmembderwithaddComponent,
                  LeavegroupComponent,
-                 ManagegroupComponent
+                 ManagegroupComponent,
+                 EditusernameComponent,
+                 EditemailComponent,
+                 EditphoneComponent
 
   ],
   imports: [

@@ -1,99 +1,108 @@
 <div class="modal-header">
-    <h4 class="modal-title">Group Info</h4>
-    <div class="modal-title">
-        
-        <div class="title">
-            <button class="tbButton" [matMenuTriggerFor]="menu"  >
-                <i class="material-icons">more_vert</i>
-            </button>
-            <button class="tbButton otherOptions"  (click)="close()">
-                <i class="material-icons">clear</i>
-            </button>
-        </div> 
+  <h4 class="modal-title">Group Info</h4>
+  <div class="modal-title">
+    <div class="title">
+      <button class="tbButton" [matMenuTriggerFor]="menu">
+        <i class="material-icons">more_vert</i>
+      </button>
+      <button class="tbButton otherOptions" (click)="close()">
+        <i class="material-icons">clear</i>
+      </button>
     </div>
+  </div>
 </div>
 <div class="mefor">
   <div *ngIf="urlImage; else text">
-    <div class="name"><p >{{title}}</p></div>
-    <div><img class="image" [src]="urlImage"></div>
+    <div class="name">
+      <p>{{ title }}</p>
+    </div>
+    <div><img class="image" [src]="urlImage" /></div>
     <div class="count">
-      <i>{{countMembers}} members</i> 
-     </div>
-   
-  </div>
-    <ng-template  #text >
-      <div class="name"><p >{{title}}</p></div>
-      <div class="upload-btn-wrapper">
-        <button type="button" class="gavatar-t" (click)=" openmodalimage()">{{sign}}</button>
-        
-      </div>
-      
-      <div class="count">
-        <i>{{countMembers}} members</i> 
-       </div> 
-    </ng-template>
-   
-  </div>
-  <hr>
-  <div class="addition">
-      <mat-divider></mat-divider>
-      <div class="info">
-        <mat-icon class="icon">notifications_none</mat-icon>
-        <span><a (click)="checked=!checked">Notification</a></span>
-        <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled"> </mat-slide-toggle>
-        
+      <i>{{ countMembers }} members</i>
     </div>
   </div>
-  <mat-menu #menu="matMenu">
-    <!-- <button mat-menu-item >
+  <ng-template #text>
+    <div class="name">
+      <p>{{ title }}</p>
+    </div>
+    <div class="upload-btn-wrapper">
+      <button type="button" class="gavatar-t" (click)="openmodalimage()">
+        {{ sign }}
+      </button>
+    </div>
+
+    <div class="count">
+      <i>{{ countMembers }} members</i>
+    </div>
+  </ng-template>
+</div>
+<hr />
+<div class="addition">
+  <mat-divider></mat-divider>
+  <div class="info">
+    <mat-icon class="icon">notifications_none</mat-icon>
+    <span><a (click)="checked = !checked">Notification</a></span>
+    <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled">
+    </mat-slide-toggle>
+  </div>
+</div>
+<mat-menu #menu="matMenu">
+  <!-- <button mat-menu-item >
       <span>Share contact</span>
     </button>  модалка под это создана нужно добавить на бэке эту функцию-->
-    <button mat-menu-item (click)="manageGroup()">
-      <span>Manage group</span>
-    </button>
-    <button mat-menu-item (click)="addMembers()" >
-        <span>Add Members</span>
-   </button>
-   <button mat-menu-item (click)="deleteChat()">
+  <button mat-menu-item (click)="manageGroup()">
+    <span>Manage group</span>
+  </button>
+  <button mat-menu-item (click)="addMembers()">
+    <span>Add Members</span>
+  </button>
+  <button mat-menu-item (click)="deleteChat()">
     <span>Delete chart</span>
   </button>
   <!-- <button mat-menu-item >
     <span>Create poll</span>
   </button> -->
-  <button mat-menu-item {click}="leaveGroup()" >
+  <button mat-menu-item (click)="leaveGroup()">
     <span>Delete and leave</span>
   </button>
   <!-- <button mat-menu-item  >
     <span>Clear history</span>
   </button> -->
-  </mat-menu>
-  <hr>
-  <div class="userlist">
-  
-      <div class="item" (click)="getMembers()">
-        <mat-icon class="icon icon-top">people</mat-icon>
-        <i class="icon-top">{{countMembers}} members</i> 
-        <mat-icon class="material-icons icon-top">search</mat-icon>
-      </div>
-    
-      <div class="list">
-        <ul >
-            <li   class="active" *ngFor="let user of listOfUsersGroup; let i = index"
-            (click)="setIndex(i)"  [class.active]="selectedIndex === i" >
-                <div class="avatar">
-                    <a class="gavatar" >
-                        <span class="sign" *ngIf="initialAvatarText; else image">{{user['signs']}}</span>
-                        <ng-template #image>
-                            <img  [src]="initialAvatarImage">
-                        </ng-template> 
-                    </a>
-                    <span class="name" style="color: black">{{user['name']}} <i class="time">Last visit {{user['updated'] |  date:'hh:mm' }}</i></span> 
-                </div>
-              
-               
-                 
-            </li>
-        </ul>
-       </div>
-       
+</mat-menu>
+<hr />
+<div class="userlist">
+  <div class="item" (click)="getMembers()">
+    <mat-icon class="icon icon-top">people</mat-icon>
+    <i class="icon-top ">{{ countMembers }} members</i>
+    <mat-icon class="material-icons icon-top">search</mat-icon>
   </div>
+
+  <div class="list">
+    <ul>
+      <li
+        (contextmenu)="getUser($event, user['id'])"
+        class="active"
+        *ngFor="let user of listOfUsersGroup; let i = index"
+        (click)="setIndex(i)"
+        [class.active]="selectedIndex === i"
+      >
+        <div class="avatar">
+          <a class="gavatar">
+            <span class="sign" *ngIf="initialAvatarText; else image">{{
+              user["signs"]
+            }}</span>
+            <ng-template #image>
+              <img [src]="initialAvatarImage" />
+            </ng-template>
+          </a>
+          <span class="name" style="color: black;"
+            >{{ user["name"] }}
+            <i class="time"
+              >Last visit {{ user["updated"] | date: "hh:mm" }}</i
+            ></span
+          >
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

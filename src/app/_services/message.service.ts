@@ -91,4 +91,9 @@ export class MessageService implements OnInit{
         id:id
       })
     }
+    sendFile(userId,fileId,type){
+      this.apiService.send({
+        method:''
+      })
+    }
 }
