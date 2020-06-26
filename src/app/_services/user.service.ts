@@ -26,10 +26,10 @@ export class UserService {
    id:id
   })
 }
-userUpdate(name){
+userUpdate(login){
   this.apiService.send({
     method:"user/update",
-    name:name
+    login:login
   
   })
 }
@@ -45,6 +45,12 @@ phoneUpdate(phone){
     method:"user/update",
     phone:phone
   
+  })
+}
+nameUpdate(name){
+  this.apiService.send({
+    method:"user/update",
+    name:name
   })
 }
 }

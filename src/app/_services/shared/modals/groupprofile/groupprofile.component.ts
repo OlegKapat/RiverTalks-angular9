@@ -6,7 +6,7 @@ import { ApiService } from "src/app/_services/api.service";
 import { GroupService } from "src/app/_services/group.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { GroupmembersComponent } from "../groupmembers/groupmembers.component";
-import { ImageforgroupeComponent } from "../imageforgroupe/imageforgroupe.component";
+
 import { AvatarserviceService } from "src/app/_services/avatarservice.service";
 import { concat, switchMap } from "rxjs/operators";
 import { analyzeAndValidateNgModules } from "@angular/compiler";
@@ -15,6 +15,7 @@ import { AddmembertogroupComponent } from "../addmembertogroup/addmembertogroup.
 import { DeletegroupComponent } from "../deletegroup/deletegroup.component";
 import { MatDialog } from "@angular/material/dialog";
 import { ModalforuseringroupComponent } from "../modalforuseringroup/modalforuseringroup.component";
+import { GetimageforavatarComponent } from '../getimageforavatar/getimageforavatar.component';
 
 @Component({
   selector: "app-groupprofile",
@@ -128,7 +129,7 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
     this.selectedIndex = index;
   }
   openmodalimage() {
-    this.modalService.open(ImageforgroupeComponent, { size: "sm" });
+    this.modalService.open(GetimageforavatarComponent, { size: "sm" });
     this.activeModal.close();
   }
   manageGroup() {

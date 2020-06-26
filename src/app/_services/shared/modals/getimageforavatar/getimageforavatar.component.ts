@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from 'src/app/_services/api.service';
@@ -6,11 +6,11 @@ import { GroupService } from 'src/app/_services/group.service';
 import { GroupavatarComponent } from '../groupavatar/groupavatar.component';
 
 @Component({
-  selector: 'app-imageforgroupe',
-  templateUrl: './imageforgroupe.component.html',
-  styleUrls: ['./imageforgroupe.component.css']
+  selector: 'app-getimageforavatar',
+  templateUrl: './getimageforavatar.component.html',
+  styleUrls: ['./getimageforavatar.component.css']
 })
-export class ImageforgroupeComponent implements OnInit,AfterViewInit {
+export class GetimageforavatarComponent implements OnInit {
   image:File=null;
   imagePrevie: string | ArrayBuffer;
   title:string;
@@ -49,4 +49,5 @@ export class ImageforgroupeComponent implements OnInit,AfterViewInit {
     this.modalService.open(GroupavatarComponent,{size:"md"})
     this.activeModal.close()
  }
+
 }

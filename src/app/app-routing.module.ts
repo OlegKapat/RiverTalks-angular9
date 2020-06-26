@@ -12,7 +12,7 @@ import {AuthGuard} from './_services/authguard'
 import { LoginwithphoneComponent } from './loginwithphone/loginwithphone.component';
 
 const routes: Routes = [
-  {path: '', component: LoginwithphoneComponent},
+  {path: '', component: LoginComponent},
   {path: 'login', component: LoginwithphoneComponent },
   {path: 'logout', component: LogoutComponent},
   {path: 'register', component: RegisterComponent},

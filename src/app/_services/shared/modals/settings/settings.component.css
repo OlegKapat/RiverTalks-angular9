@@ -53,13 +53,14 @@ button, input[type="search"], input[type="text"] {
 .item{
 	position: relative;
 	text-align: center;
+	height: 30px;
 }
 .icon{
 	display: inline-block;
 	position: absolute;
 	margin-left: -100px;	
 }
-.item :hover{
+.item:hover{
 	background: rgb(211, 210, 210);
 	cursor: pointer;
 }

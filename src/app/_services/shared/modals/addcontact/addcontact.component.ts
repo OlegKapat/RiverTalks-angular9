@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContactService } from 'src/app/_services/contact.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/_services/api.service';
 import { FormControl } from '@angular/forms';
 import { UserService } from 'src/app/_services/user.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -11,11 +13,12 @@ import { UserService } from 'src/app/_services/user.service';
   templateUrl: './addcontact.component.html',
   styleUrls: ['./addcontact.component.css']
 })
-export class AddcontactComponent implements OnInit {
+export class AddcontactComponent implements OnInit,OnDestroy {
   search="";
   numberId:number;
   findUser:any[]=[];
    myControl:FormControl = new FormControl('');
+   destroy$ = new Subject<void>()
   constructor(public activeModal: NgbActiveModal,private contactService:ContactService, 
     private apiService:ApiService, private userService:UserService ) { }
 
@@ -24,7 +27,7 @@ export class AddcontactComponent implements OnInit {
   }
   createContact(event){
    this.userService.searchUser(event)
-    this.apiService.on('user/search').subscribe((data:any)=>{this.findUser=data['users']
+    this.apiService.on('user/search').pipe(takeUntil(this.destroy$)).subscribe((data:any)=>{this.findUser=data['users']
        
     },error=>console.log(error)
     )
@@ -36,5 +39,9 @@ export class AddcontactComponent implements OnInit {
   addContact(){
     this.contactService.addContactToList(this.numberId);
     this.activeModal.dismiss();
+  }
+  ngOnDestroy(){
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

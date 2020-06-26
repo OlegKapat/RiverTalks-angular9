@@ -15,7 +15,12 @@
     </div>
  
     <div class="mefor">
-       <p><img  class="image" *ngIf="user['user']['name']!==''; else photo"  src="../../../../../assets/devimages/camera-1085705_640.png">{{user['user']['name']}} </p> 
+       <img  class="image" *ngIf="user['user']['name']!==''; else photo"  src="../../../../../assets/devimages/camera-1085705_640.png">
+       <div class="form__group field">
+        <input #mainname (keyup.enter)="change(mainname.value)" [value]="user['user']['name']" type="input" class="form__field"  name="name" id='name'/>
+        
+      </div>
+         <!-- <p>{{user['user']['name']}} </p>  -->
         <ng-template #photo><img class="image" src="user['user']['photo']"></ng-template>
        <img (click)="setImageAvatar()" class="image-btn" src="../../../../../assets/devimages/camera-1085705_640.png">
         <!-- <div class="upload-btn-wrapper">
@@ -58,7 +63,7 @@
               <mat-icon class="icon ">alternate_email</mat-icon>
             </div>
             <div class="item">
-              <span class="icon icon-top">{{user['user']['name']}}</span>
+              <span class="icon icon-top">{{user['user']['login']}}</span>
               <div><i class="tik">UserName</i></div>
 
             </div>
@@ -85,8 +90,8 @@
               <mat-icon class="icon ">attach_money</mat-icon>
             </div>
             <div class="item">
-              <span class="icon icon-top">Balance {{user['user']['balance']}}</span>
-              <div><i class="tik">Current Balance</i></div>
+              <span (click)="getWallet(user['user']['wallet_address'])" class="icon icon-top address">Wallet:{{user['user']['wallet_address']}}</span>
+              <div ><i class="tik">Wallet addres</i></div>
 
             </div>
             <!-- <div class="item">

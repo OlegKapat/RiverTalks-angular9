@@ -1,5 +1,6 @@
 li{
     list-style: none;
+    display: inline;
 }
 li:hover{
     cursor: pointer;
@@ -11,6 +12,7 @@ h4{
 img{
     width: 60px;
     height: 60px;
+    margin-left: 10px;
 }
 
   .btn-group{

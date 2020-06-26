@@ -33,7 +33,7 @@ export class AuthService implements OnInit{
       this.loader = loader;
       console.log(loader);
     });
-    this.apiService.on<any>("user/login").subscribe(data =>{console.log(data);
+    this.apiService.on<any>("user/login").subscribe(data =>{
       this.loaderS.next(false);
       this.processUser(data);
     });
