@@ -37,6 +37,9 @@ export class AuthService implements OnInit{
       this.loaderS.next(false);
       this.processUser(data);
     });
+    this.apiService.on<any>("user/sms").subscribe(data=>{
+      this.processUser(data)
+    })
     this.apiService.on<any>("user/register").subscribe(data => {
       this.processUser(data);
     });

@@ -29,13 +29,10 @@ export class EditprofileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUser();
-    this.apiService.on('user/get').subscribe(data=>{this.user=data,console.log(this.user),console.log();
-    
-    
+    this.apiService.on('user/get').subscribe(data=>{this.user=data,console.log(this.user)  
     },error=>console.log(error));
     
   }
- 
    back(){
      this.activeModal.close();
      this.modalService.open(SettingsComponent,{ size: 'sm',centered: true } )
@@ -55,9 +52,6 @@ export class EditprofileComponent implements OnInit {
  }
  setImageAvatar(){
      this.modalService.open(LoadimageonserverComponent)
- }
- clearImage(){
-   this.imageView=!this.imageView
  }
  changeName(){
    this.modalService.open(EditusernameComponent,{size:"sm"})
