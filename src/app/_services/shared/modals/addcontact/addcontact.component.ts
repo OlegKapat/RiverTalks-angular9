@@ -27,7 +27,7 @@ export class AddcontactComponent implements OnInit,OnDestroy {
   }
   createContact(event){
    this.userService.searchUser(event)
-    this.apiService.on('user/search').pipe(takeUntil(this.destroy$)).subscribe((data:any)=>{this.findUser=data['users']
+   this.apiService.on('user/search').pipe(takeUntil(this.destroy$)).subscribe((data:any)=>{this.findUser=data['users']
        
     },error=>console.log(error)
     )

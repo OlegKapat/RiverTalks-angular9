@@ -58,7 +58,7 @@
             </div>
 
         </div>
-        <div class="items" (click)="changeName()">
+        <div class="items" (click)="changeName(user['user']['login'])">
             <div class="item">
               <mat-icon class="icon ">alternate_email</mat-icon>
             </div>
@@ -75,9 +75,9 @@
             <div class="item">
               <mat-icon class="icon ">how_to_reg</mat-icon>
             </div>
-            <div class="item">
+            <div class="item" (click)="getPartner(user['user']['partner_id'])">
               <span class="icon icon-top">{{user['user']['partner_id']}}</span>
-              <div><i class="tik">Partner</i></div>
+              <div><i class="tik">Partner Id</i></div>
 
             </div>
             <!-- <div class="item">
@@ -89,9 +89,9 @@
             <div class="item">
               <mat-icon class="icon ">attach_money</mat-icon>
             </div>
-            <div class="item">
-              <span (click)="getWallet(user['user']['wallet_address'])" class="icon icon-top address">Wallet:{{user['user']['wallet_address']}}</span>
-              <div ><i class="tik">Wallet addres</i></div>
+            <div class="item" (click)="getWallet(user['user']['wallet_address'])">
+              <span  class="icon icon-top">Balance:{{user['user']['balance']}}</span>
+              <div ><i (click)="getWallet(user['user']['wallet_address'])"class="tik  address">Wallet:{{user['user']['wallet_address']}}</i></div>
 
             </div>
             <!-- <div class="item">

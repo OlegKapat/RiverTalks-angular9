@@ -48,8 +48,6 @@ export class MessagesComponent implements OnInit,AfterViewInit,OnDestroy{
     else{
       this.messageService.getMessage( this.groupId);
     }
-    
-    
     })
     this.allmessages$=this.apiService.on<Message[]>('message/get');
     
