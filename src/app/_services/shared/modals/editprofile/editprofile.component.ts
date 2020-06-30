@@ -40,7 +40,7 @@ export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
     this.getUser()
   }
   ngAfterViewInit(){
-  
+
   }
   getUser(){
     this.userService.getUser();
@@ -76,10 +76,12 @@ export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
     sessionStorage.setItem("namelogin",name)
     this.modalService.open(EditusernameComponent, { size: "sm" });
   }
-  changeMail() {
+  changeMail(mail) {
+    sessionStorage.setItem("namemail",mail)
     this.modalService.open(EditemailComponent, { size: "sm" });
   }
-  changePhone() {
+  changePhone(phone) {
+    sessionStorage.setItem("namephone",phone)
     this.modalService.open(EditphoneComponent, { size: "sm" });
   }
   getWallet(wallet){

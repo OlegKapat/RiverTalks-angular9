@@ -8,12 +8,14 @@ import { UserService } from "src/app/_services/user.service";
   styleUrls: ["./editphone.component.css"],
 })
 export class EditphoneComponent implements OnInit {
+  currentPhone:string;
   constructor(
     public activeModal: NgbActiveModal,
     private userService: UserService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit( ): void {this.currentPhone= sessionStorage.getItem("namephone")}
+
   editPhone(phone) {
     this.userService.phoneUpdate(phone);
     this.activeModal.close();

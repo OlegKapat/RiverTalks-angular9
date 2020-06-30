@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit,AfterViewInit{
    searchfield="";
    messageId:number;
    messageForEdit:boolean;
-   currentId:number;
+   userId:number;
+   groupId:number;
    messageList:string[] = [];
    color: ThemePalette = 'primary';
    @ViewChild('text') public inputmesssage:ElementRef;
@@ -56,6 +57,10 @@ export class HomeComponent implements OnInit,AfterViewInit{
   ngAfterViewInit(){
     this.route.queryParamMap.subscribe(param=>{this.selected=param['params'].select});
     this.focusService.getFocus(this.inputmesssage.nativeElement) 
+    this.route.queryParams.subscribe(params=>{this.userId= +params['userId'], this.groupId= -params['groupId']
+   
+    //this.apiservice.on<any>('message/get').subscribe()
+   })
   }
   messageContent(message){
    this.messageForEdit=message;
@@ -68,16 +73,18 @@ export class HomeComponent implements OnInit,AfterViewInit{
      return
    }
    else{
-   this.route.queryParams.subscribe(params=>{this.currentId=+params['userId'], this.currentId= -params['groupId']
-   //this.apiservice.on<any>('message/get').subscribe()
-  })
-  this.messageService.sendMessage(message,this.currentId);
+   this.messageService.sendMessage(message,this.userId || this.groupId);
    this.inputmesssage.nativeElement.value='';
    this.show=false;
    }
    this.route.queryParams.subscribe(params=>{
-    this.messageService.getMessage(+params['userId'],null)
-    this.messageService.getMessage(-params['groupId'],null)
+     if(+params['userId']){
+      this.messageService.getMessage(+params['userId'])
+     }
+     else{
+      this.messageService.getMessage(-params['groupId'])
+     }
+    
   })
  }
  editMessage(message){

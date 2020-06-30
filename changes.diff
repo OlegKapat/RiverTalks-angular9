@@ -1,0 +1,204 @@
+diff --git a/src/app/_services/shared/modals/editemail/editemail.component.ts b/src/app/_services/shared/modals/editemail/editemail.component.ts
+index 22a264f..3fe1176 100644
+--- a/src/app/_services/shared/modals/editemail/editemail.component.ts
++++ b/src/app/_services/shared/modals/editemail/editemail.component.ts
+@@ -17,14 +17,13 @@ export class EditemailComponent implements OnInit,AfterViewInit,AfterContentInit
+   ) {}
+ 
+   ngOnInit(): void {
+-   
++   this.currentEmail= sessionStorage.getItem("namemail")
+   }
+   ngAfterViewInit(){
+-  
++
+   }
+-  ngAfterContentInit(){
+-    this.apiService.on('user/get').subscribe(data=>{this.currentEmail=data['user']['email'],console.log(data);
+-  })
++  ngAfterContentInit(): void {
++
+   }
+   editMail(mail) {
+     this.userService.mailUpdate(mail);
+diff --git a/src/app/_services/shared/modals/editphone/editphone.component.html b/src/app/_services/shared/modals/editphone/editphone.component.html
+index 6752fc6..19dac69 100644
+--- a/src/app/_services/shared/modals/editphone/editphone.component.html
++++ b/src/app/_services/shared/modals/editphone/editphone.component.html
+@@ -2,9 +2,9 @@
+     <h4>Edit phone number</h4>
+     <mat-form-field class="example-full-width">
+         <mat-label>Phone number</mat-label>
+-        <input matInput #phone >
++        <input [value]="currentPhone" matInput #phone >
+       </mat-form-field>
+-    
++
+       <div class="btn-group">
+         <button mat-raised-button color="primary" (click)="editPhone(phone.value)">Edit</button>
+         <button mat-raised-button color="primary" (click)="activeModal.dismiss()">Cancel</button>
+diff --git a/src/app/_services/shared/modals/editphone/editphone.component.ts b/src/app/_services/shared/modals/editphone/editphone.component.ts
+index bbb2fa6..3cb308e 100644
+--- a/src/app/_services/shared/modals/editphone/editphone.component.ts
++++ b/src/app/_services/shared/modals/editphone/editphone.component.ts
+@@ -8,12 +8,14 @@ import { UserService } from "src/app/_services/user.service";
+   styleUrls: ["./editphone.component.css"],
+ })
+ export class EditphoneComponent implements OnInit {
++  currentPhone:string;
+   constructor(
+     public activeModal: NgbActiveModal,
+     private userService: UserService
+   ) {}
+ 
+-  ngOnInit(): void {}
++  ngOnInit( ): void {this.currentPhone= sessionStorage.getItem("namephone")}
++
+   editPhone(phone) {
+     this.userService.phoneUpdate(phone);
+     this.activeModal.close();
+diff --git a/src/app/_services/shared/modals/editprofile/editprofile.component.html b/src/app/_services/shared/modals/editprofile/editprofile.component.html
+index 0cc3143..12dfaa7 100644
+--- a/src/app/_services/shared/modals/editprofile/editprofile.component.html
++++ b/src/app/_services/shared/modals/editprofile/editprofile.component.html
+@@ -1,7 +1,7 @@
+ <div class="modal-newgroup">
+     <div class="modal-header">
+         <div class="modal-title">
+-           
++
+             <div class="title">
+                 <button class="tbButton" (click)="back()" >
+                     <i class="material-icons">keyboard_backspace</i>
+@@ -10,27 +10,27 @@
+                 <button class="tbButton otherOptions" (click)="close()" >
+                     <i class="material-icons">clear</i>
+                 </button>
+-            </div> 
++            </div>
+         </div>
+     </div>
+- 
++
+     <div class="mefor">
+        <img  class="image" *ngIf="user['user']['name']!==''; else photo"  src="../../../../../assets/devimages/camera-1085705_640.png">
+        <div class="form__group field">
+         <input #mainname (keyup.enter)="change(mainname.value)" [value]="user['user']['name']" type="input" class="form__field"  name="name" id='name'/>
+-        
++
+       </div>
+          <!-- <p>{{user['user']['name']}} </p>  -->
+         <ng-template #photo><img class="image" src="user['user']['photo']"></ng-template>
+        <img (click)="setImageAvatar()" class="image-btn" src="../../../../../assets/devimages/camera-1085705_640.png">
+         <!-- <div class="upload-btn-wrapper">
+-           
++
+             <input class="inputfile" type="file" name="myfile" (change)="onFileUpload($event)" />
+         </div> -->
+       </div>
+       <div class="userInfo">
+         <h4>Account</h4>
+-          <div class="items" (click)="changePhone()">
++          <div class="items" (click)="changePhone(user['user']['phone'])">
+               <div class="item">
+                 <mat-icon class="icon ">call</mat-icon>
+               </div>
+@@ -44,7 +44,7 @@
+               </div>
+ 
+           </div>
+-          <div class="items" (click)="changeMail()">
++          <div class="items" (click)="changeMail(user['user']['email'])">
+             <div class="item">
+               <mat-icon class="icon ">mail</mat-icon>
+             </div>
+@@ -76,8 +76,8 @@
+               <mat-icon class="icon ">how_to_reg</mat-icon>
+             </div>
+             <div class="item" (click)="getPartner(user['user']['partner_id'])">
+-              <span class="icon icon-top">{{user['user']['partner_id']}}</span>
+-              <div><i class="tik">Partner Id</i></div>
++              <span class="icon icon-top">Partner Id: {{user['user']['partner_id']}}</span>
++              <div><i class="tik">Partner</i></div>
+ 
+             </div>
+             <!-- <div class="item">
+@@ -91,7 +91,7 @@
+             </div>
+             <div class="item" (click)="getWallet(user['user']['wallet_address'])">
+               <span  class="icon icon-top">Balance:{{user['user']['balance']}}</span>
+-              <div ><i (click)="getWallet(user['user']['wallet_address'])"class="tik  address">Wallet:{{user['user']['wallet_address']}}</i></div>
++              <div ><i (click)="getWallet(user['user']['wallet_address'])"class="tik  address">{{user['user']['wallet_address']}}</i></div>
+ 
+             </div>
+             <!-- <div class="item">
+@@ -111,9 +111,9 @@
+              <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled"></mat-slide-toggle>
+          </div>
+       </div>
+-     
++
+ 
+     </div>
+-   
++
+ 
+ 
+diff --git a/src/app/_services/shared/modals/editprofile/editprofile.component.ts b/src/app/_services/shared/modals/editprofile/editprofile.component.ts
+index 2933562..5840720 100644
+--- a/src/app/_services/shared/modals/editprofile/editprofile.component.ts
++++ b/src/app/_services/shared/modals/editprofile/editprofile.component.ts
+@@ -40,7 +40,7 @@ export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
+     this.getUser()
+   }
+   ngAfterViewInit(){
+-  
++
+   }
+   getUser(){
+     this.userService.getUser();
+@@ -76,10 +76,12 @@ export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
+     sessionStorage.setItem("namelogin",name)
+     this.modalService.open(EditusernameComponent, { size: "sm" });
+   }
+-  changeMail() {
++  changeMail(mail) {
++    sessionStorage.setItem("namemail",mail)
+     this.modalService.open(EditemailComponent, { size: "sm" });
+   }
+-  changePhone() {
++  changePhone(phone) {
++    sessionStorage.setItem("namephone",phone)
+     this.modalService.open(EditphoneComponent, { size: "sm" });
+   }
+   getWallet(wallet){
+diff --git a/src/app/_services/shared/modals/editusername/editusername.component.ts b/src/app/_services/shared/modals/editusername/editusername.component.ts
+index befe261..72b24fd 100644
+--- a/src/app/_services/shared/modals/editusername/editusername.component.ts
++++ b/src/app/_services/shared/modals/editusername/editusername.component.ts
+@@ -4,14 +4,14 @@ import { UserService } from "src/app/_services/user.service";
+ import { ApiService } from 'src/app/_services/api.service';
+ 
+ @Component({
+-  
++
+   selector: "app-editusername",
+   templateUrl: "./editusername.component.html",
+   styleUrls: ["./editusername.component.css"],
+ })
+ export class EditusernameComponent implements OnInit{
+   fullname:string;
+-  
++
+   constructor(
+     public activeModal: NgbActiveModal,
+     private userService: UserService,
+@@ -22,8 +22,6 @@ export class EditusernameComponent implements OnInit{
+ 
+   editName(name) {
+     this.userService.userUpdate(name);
+-    this.apiService.on('user/get').subscribe(data=>console.log(data)
+-    )
+     this.activeModal.close();
+   }
+ }

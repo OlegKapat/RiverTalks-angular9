@@ -1,13 +1,14 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit} from '@angular/core';
 import { ApiService } from 'src/app/_services';
 import { ContactService } from 'src/app/_services/contact.service';
 import { Observable, concat, pipe, merge, zip } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Group } from 'src/app/_models/group';
 import { GroupService } from 'src/app/_services/group.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalforuserComponent } from 'src/app/_services/shared/modals/modalforuser/modalforuser.component';
 import { ModalforgroupComponent } from 'src/app/_services/shared/modals/modalforgroup/modalforgroup.component';
+import value from '*html';
 
 
 
@@ -16,7 +17,7 @@ import { ModalforgroupComponent } from 'src/app/_services/shared/modals/modalfor
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit,AfterViewInit {
   @Input()searchfield:string;
   allcontacts$:Observable<any[]>;
   allgroups$:Observable<any[]>;
@@ -31,57 +32,54 @@ export class ContactComponent implements OnInit {
 
 
   constructor(private apiService:ApiService, private contactService:ContactService,
-              private router:Router, private groupService:GroupService,public dialog:MatDialog ) { }
+              private router:Router, private groupService:GroupService,public dialog:MatDialog,private route:ActivatedRoute ) { }
 
   ngOnInit(): void {
-   this.contactService.getContacts()
-   this.allcontacts$=this.apiService.on("contact/get")
-   this.groupService.getGroup();
-   this.allgroups$=this.apiService.on<Group[]>("group/get")
-   
- 
-  //zip(this.allgroups$,this.allcontacts$).pipe(map(x=>this.contactform=[x[0]['groups'],x[1]['contacts']])).subscribe(data=>console.log(data))
-  zip(this.allgroups$,this.allcontacts$).subscribe(data=>{this.contactform=[data[0]['groups'],data[1]['contacts']]
-  
-    if(this.contactform){
-      this.contactform[1].forEach(value=>{   
-        if(value['user']['avatar']['file']['url'] ==""){
-         value.sign= this.transformAvatar(value['user']['name'])
-        }
-        else{
-          value.url=value['user']['avatar']['file']['url'] 
-        }
-      })
-    }
-    if(this.contactform){
-      this.contactform[0].forEach(value=>{  
-        if(value['avatar']['file']['url'] ==""){
-          value.sign= this.transformAvatar(value['title']) 
-        }
-        else{
-          value.url=value['avatar']['file']['url']
-        }
-         
-      })
-    }
-   })
+     this.getList()
   }
-  //  this.allcontacts$. subscribe(data=>{this.contactform=[...data['contacts']]
-   
-  //   if(this.contactform){
-  //     this.contactform.forEach(value=>{   
-  //       if(value['user']['avatar']['file']['url'] ==""){
-  //        value.sign= this.transformAvatar(value['user']['name'])
-  //       }
-  //       else{
-  //         this.initialAvatarImage=value['user']['avatar']['file']['url'] 
-  //       }
-  //     })
-  //   }
-  //  })
-   
-  
-  setIndex(index: number) {
+   getList(){
+    this.contactService.getContacts()
+    this.allcontacts$=this.apiService.on("contact/get")
+    this.groupService.getGroup();
+    this.allgroups$=this.apiService.on<Group[]>("group/get")
+    zip(this.allgroups$,this.allcontacts$).subscribe(data=>{this.contactform=[data[0]['groups'],data[1]['contacts']]
+     if(this.contactform){
+       this.contactform[1].forEach(value=>{   
+         if(value['user']['avatar']['file']['url'] ==""){
+          value.sign= this.transformAvatar(value['user']['name'])
+         }
+         else{
+           value.url=value['user']['avatar']['file']['url'] 
+         }
+       })
+     }
+     if(this.contactform){
+       this.contactform[0].forEach(value=>{  
+         if(value['avatar']['file']['url'] ==""){
+           value.sign= this.transformAvatar(value['title']) 
+         }
+         else{
+           value.url=value['avatar']['file']['url']
+         }
+          
+       })
+     }
+    })
+   }
+  ngAfterViewInit(){
+    this.route.queryParams.subscribe((param:Params)=>{
+      if(param['groupCreate']=="ok"){
+        this.getList()
+      }
+      else if(param['groupDelete']=="ok"){
+        this.getList()
+      }
+      else if(param['newUser']=="add"){
+        this.getList()
+      }
+    })
+  }
+setIndex(index: number) {
     this.selectedIndex = index;
  }
  setIndexForGroup(index: number) {

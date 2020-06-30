@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { UserService } from 'src/app/_services/user.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class AddcontactComponent implements OnInit,OnDestroy {
    myControl:FormControl = new FormControl('');
    destroy$ = new Subject<void>()
   constructor(public activeModal: NgbActiveModal,private contactService:ContactService, 
-    private apiService:ApiService, private userService:UserService ) { }
+    private apiService:ApiService, private userService:UserService, private router:Router ) { }
 
   ngOnInit(): void {
   
@@ -28,7 +29,7 @@ export class AddcontactComponent implements OnInit,OnDestroy {
   createContact(event){
    this.userService.searchUser(event)
    this.apiService.on('user/search').pipe(takeUntil(this.destroy$)).subscribe((data:any)=>{this.findUser=data['users']
-       
+   
     },error=>console.log(error)
     )
   }
@@ -38,6 +39,12 @@ export class AddcontactComponent implements OnInit,OnDestroy {
   }
   addContact(){
     this.contactService.addContactToList(this.numberId);
+    this.router.navigate(["home"], {
+      queryParams: {
+        newUser:'add',
+      },
+      queryParamsHandling: "merge",
+    });
     this.activeModal.dismiss();
   }
   ngOnDestroy(){

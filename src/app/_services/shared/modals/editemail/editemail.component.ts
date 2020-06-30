@@ -17,14 +17,13 @@ export class EditemailComponent implements OnInit,AfterViewInit,AfterContentInit
   ) {}
 
   ngOnInit(): void {
-   
+   this.currentEmail= sessionStorage.getItem("namemail")
   }
   ngAfterViewInit(){
-  
+
   }
-  ngAfterContentInit(){
-    this.apiService.on('user/get').subscribe(data=>{this.currentEmail=data['user']['email'],console.log(data);
-  })
+  ngAfterContentInit(): void {
+
   }
   editMail(mail) {
     this.userService.mailUpdate(mail);

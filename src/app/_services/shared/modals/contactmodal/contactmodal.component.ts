@@ -30,7 +30,7 @@ export class ContactmodalComponent implements OnInit {
          value.sign= this.transformAvatar(value['user']['name'])
         }
         else{
-          this.initialAvatarImage=value['user']['avatar']['file']['url'] 
+          value.url=value['user']['avatar']['file']['url'] 
         }
       })
     }

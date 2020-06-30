@@ -17,9 +17,9 @@
                 (click)="setIndex(i)"  [class.active]="selectedIndex === i"  >
                     <div class="avatar">
                         <a class="gavatar">
-                            <span class="sign" *ngIf="initialAvatarText; else image">{{contact['sign']}}</span>
+                            <span class="sign" *ngIf="contact['sign']; else image">{{contact['sign']}}</span>
                             <ng-template #image>
-                                <img  [src]="initialAvatarImage">
+                                <img  [src]="contact['url']">
                             </ng-template> 
                         </a>
                         <span class="name" style="color: black;">{{contact['user']['name']}}</span>

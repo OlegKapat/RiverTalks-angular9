@@ -2,9 +2,9 @@
     <h4>Edit phone number</h4>
     <mat-form-field class="example-full-width">
         <mat-label>Phone number</mat-label>
-        <input matInput #phone >
+        <input [value]="currentPhone" matInput #phone >
       </mat-form-field>
-    
+
       <div class="btn-group">
         <button mat-raised-button color="primary" (click)="editPhone(phone.value)">Edit</button>
         <button mat-raised-button color="primary" (click)="activeModal.dismiss()">Cancel</button>
