@@ -3,7 +3,7 @@
       <div col-12>
         <section class="menuWrap">
           <div class="menu">
-            <div class="me userBg">
+            <div class="me userBg" (click)="openProfile()">
               <img   class="image" *ngIf="user['user']['photo']!==''; else photo"  src="../../../assets//devimages//shutter-1237250_640.png">
               <ng-template #photo><img class="image" src="user['user']['photo']"></ng-template>
               <div class="myinfo">

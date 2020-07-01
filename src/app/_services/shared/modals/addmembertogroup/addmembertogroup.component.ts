@@ -1,10 +1,11 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { Observable, Subject, combineLatest } from "rxjs";
 import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ApiService, ContactService } from "src/app/_services";
 import { takeUntil } from "rxjs/operators";
 import { ActivatedRoute, Router } from '@angular/router';
 import { GroupService } from 'src/app/_services/group.service';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: "app-addmembertogroup",
@@ -18,9 +19,12 @@ export class AddmembertogroupComponent implements OnInit, AfterViewInit {
   selectedIndex: number = null;
   contactform: any[] = [];
   allcontacts$: Observable<any[]>;
+  allMembersGroup$:Observable<any>;
   destroyed$ = new Subject();
   groupId:number;
   userId:number;
+  userCount:number;
+  totalCount:number;
 
 
   constructor(
@@ -34,10 +38,19 @@ export class AddmembertogroupComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+   
+    
+  }
+  ngAfterViewInit() {
+    this.route.queryParams.pipe(takeUntil(this.destroyed$)).subscribe(data=>{this.groupId= +data['groupId']});
+    this.route.queryParams.pipe(takeUntil(this.destroyed$)).subscribe(data=>this.userId= +data['userId']);
+
     this.contactService.getContacts();
+    this.groupService.getMembers(this.groupId);
     this.allcontacts$ = this.apiService.on("contact/get");
-    this.allcontacts$.pipe(takeUntil(this.destroyed$)).subscribe((data) => {
-      this.contactform = [...data["contacts"]];
+    this.allMembersGroup$=this.apiService.on("group/members");
+    combineLatest( this.allcontacts$,this.allMembersGroup$).pipe(takeUntil(this.destroyed$)).subscribe(([contacts,members])=>{
+      this.contactform=[...contacts['contacts']]
       if (this.contactform) {
         this.contactform.forEach((value) => {
           if (value["user"]["avatar"]["file"]["url"] == "") {
@@ -47,11 +60,9 @@ export class AddmembertogroupComponent implements OnInit, AfterViewInit {
           }
         });
       }
-    });
-  }
-  ngAfterViewInit() {
-    this.route.queryParams.pipe(takeUntil(this.destroyed$)).subscribe(data=>this.groupId=+data['groupId'])
-    this.route.queryParams.pipe(takeUntil(this.destroyed$)).subscribe(data=>this.userId=+data['userId'])
+      this.userCount=members['count'];
+      this.totalCount=contacts['count'];
+    })
   }
   setIndex(index: number) {
     this.selectedIndex = index;

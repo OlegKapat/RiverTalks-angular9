@@ -59,7 +59,7 @@ export class GroupprofileComponent implements OnInit, AfterViewInit {
     );
     this.route.queryParams
       .pipe(switchMap((val) => this.apiService.on("group/get")))
-      .subscribe((data) => console.log(data));
+      .subscribe((data) =>{});
 
     this.groupService.getGroup(this.groupId);
     this.apiService.on("group/get").subscribe(

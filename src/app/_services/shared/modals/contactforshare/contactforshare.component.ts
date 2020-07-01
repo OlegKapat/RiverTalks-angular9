@@ -36,7 +36,7 @@ export class ContactforshareComponent implements OnInit, OnDestroy {
           if (value["user"]["avatar"]["file"]["url"] == "") {
             value.sign = this.transformAvatar(value["user"]["name"]);
           } else {
-            this.initialAvatarImage = value["user"]["avatar"]["file"]["url"];
+            value.url = value["user"]["avatar"]["file"]["url"];
           }
         });
       }

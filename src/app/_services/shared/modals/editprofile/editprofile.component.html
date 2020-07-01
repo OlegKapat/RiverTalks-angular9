@@ -15,7 +15,14 @@
     </div>
 
     <div class="mefor">
-       <img  class="image" *ngIf="user['user']['name']!==''; else photo"  src="../../../../../assets/devimages/camera-1085705_640.png">
+      <div class="avatar">
+        <a class="gavatar">
+          <span class="sign" *ngIf="user['user']['name']; else photo">{{
+           sign
+          }}</span>
+        </a>
+      </div>
+       <!-- <img  class="image" *ngIf="user['user']['name']!==''; else photo"  src="../../../../../assets/devimages/camera-1085705_640.png"> -->
        <div class="form__group field">
         <input #mainname (keyup.enter)="change(mainname.value)" [value]="user['user']['name']" type="input" class="form__field"  name="name" id='name'/>
 
@@ -108,7 +115,7 @@
            <span class="icon icon-top">Private Account</span>
          </div>
          <div class="item check">
-             <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled"></mat-slide-toggle>
+             <mat-slide-toggle (change)="insertPrivate($event)" [color]="color" [checked]="checked" [disabled]="disabled"></mat-slide-toggle>
          </div>
       </div>
 

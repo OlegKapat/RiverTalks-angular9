@@ -6,6 +6,7 @@ import { ContactmodalComponent } from 'src/app/_services/shared/modals/contactmo
 import {SettingsComponent} from '../../_services/shared/modals/settings/settings.component';
 import { ApiService } from 'src/app/_services';
 import { UserService } from 'src/app/_services/user.service';
+import { EditprofileComponent } from 'src/app/_services/shared/modals/editprofile/editprofile.component';
 
 
 @Component({
@@ -31,9 +32,12 @@ export class LeftSideCardComponent implements OnInit {
     this.modalService.open(CreatechannelComponent)
 }
   showContacts(){
-  this.modalService.open(ContactmodalComponent,{ size: 'lg',centered: true } )
+  this.modalService.open(ContactmodalComponent,{ size: 'lg'} )
 }
 showSettings(){
-  this.modalService.open(SettingsComponent,{ size: 'sm',centered: true })
+  this.modalService.open(SettingsComponent,{ size: 'sm'})
+}
+openProfile(){
+  this.modalService.open(EditprofileComponent,{size:"sm"})
 }
 }

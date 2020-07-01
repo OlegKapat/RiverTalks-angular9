@@ -13,10 +13,12 @@ import { LoginwithphoneComponent } from './loginwithphone/loginwithphone.compone
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
+  
   {path: 'login', component: LoginwithphoneComponent },
   {path: 'logout', component: LogoutComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'restore-password', component: RestorePasswordComponent},
+  {path: 'home/:id', component:LoginwithphoneComponent},
   {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
   // otherwise redirect to home
   {path: '**', redirectTo: 'LoginComponent'}

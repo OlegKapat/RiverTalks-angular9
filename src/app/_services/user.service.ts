@@ -53,4 +53,10 @@ nameUpdate(name){
     name:name
   })
 }
+privateUpdate(event){
+  this.apiService.send({
+    method:"user/update",
+    private:event
+  })
+}
 }

@@ -55,16 +55,15 @@ export class AuthService implements OnInit{
     this.lastErrorS.subscribe(error => {
       this.lastError = error;
       if (error) {
-        //router.navigateByUrl(router.url);
+        router.navigateByUrl(router.url);
       }
     })
     this.currentUserS.subscribe(user => {
       this.currentUser = user
-      
-      if (user) {
+      if (user && user.id && this.router.url.split('?')[0] === "/login") {
         this.router.navigate(['/home'])
       }
-      //&& user.id && this.router.url.split('?')[0] === "/login"
+      
     })
 
     this.apiService.status.subscribe(isConnected => {

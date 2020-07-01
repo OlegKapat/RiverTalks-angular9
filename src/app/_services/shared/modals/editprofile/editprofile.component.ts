@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   templateUrl: "./editprofile.component.html",
   styleUrls: ["./editprofile.component.scss"],
 })
-export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
+export class EditprofileComponent implements OnInit,OnDestroy {
   user: any;
   image: File;
   imagePrevie: string | ArrayBuffer;
@@ -27,6 +27,8 @@ export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
   disabled = false;
   initialAvatarText: string;
   destroy$ = new Subject<void>();
+  sign: string;
+  username:string;
 
   constructor(
     private modalService: NgbModal,
@@ -39,14 +41,14 @@ export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
   ngOnInit(): void {
     this.getUser()
   }
-  ngAfterViewInit(){
-
-  }
+ 
   getUser(){
     this.userService.getUser();
     this.apiService.on("user/get").pipe(takeUntil(this.destroy$)).subscribe(
       (data) => {
         this.user = data;
+        this.username=data['user']['name']
+        this.sign=this.transformAvatar(this.username)
       },
       (error) => console.log(error)
     );
@@ -101,11 +103,9 @@ export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
   document.addEventListener('copy', listener);
   document.execCommand('copy');
   document.removeEventListener('copy', listener);
-  this.router.navigate(['/home'],{queryParams:{
-   partnerId:this.user['user']['partner_id']
-  },
-   queryParamsHandling: 'merge',
-})
+  let id=btoa(this.user['user']['partner_id']);
+  this.router.navigate([`/home/${id}`])
+  this.activeModal.close()
   }
   ngOnDestroy(){
     this.destroy$.next();
@@ -121,7 +121,7 @@ export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
     var second = "";
     switch (str.length) {
       case 1:
-        first = str[0][0]; // добавить позже toUpperCase()
+        first = str[0][0].toUpperCase(); // добавить позже toUpperCase()
         break;
       case 2:
         (first = str[0][0].toUpperCase()), (second = str[1][0].toUpperCase());
@@ -130,5 +130,8 @@ export class EditprofileComponent implements OnInit,AfterViewInit,OnDestroy {
         "U";
     }
     return (this.initialAvatarText = first + second);
+  }
+  insertPrivate(event){
+    this.userService.privateUpdate(event['checked'])
   }
 }
