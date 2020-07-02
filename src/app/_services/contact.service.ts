@@ -60,4 +60,10 @@ export class ContactService implements OnInit{
                 id:id
             })
         }
+        addInBlackList(id){
+            this.apiService.send({
+                method:"blacklist/add",
+                id:id
+            })
+        }
 }

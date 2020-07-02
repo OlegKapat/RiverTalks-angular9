@@ -9,11 +9,11 @@ import { FileserviceService } from 'src/app/_services/fileservice.service';
 import { MessageService } from 'src/app/_services/message.service';
 
 @Component({
-  selector: 'app-sendfileinchat',
-  templateUrl: './sendfileinchat.component.html',
-  styleUrls: ['./sendfileinchat.component.css']
+  selector: 'app-sendfilesinchat',
+  templateUrl: './sendfilesinchat.component.html',
+  styleUrls: ['./sendfilesinchat.component.css']
 })
-export class SendfileinchatComponent implements OnInit,AfterViewInit,OnDestroy {
+export class SendfilesinchatComponent implements OnInit,AfterViewInit,OnDestroy {
   files:any;
   fileUrl:string;
   fileId:number;
@@ -33,7 +33,7 @@ export class SendfileinchatComponent implements OnInit,AfterViewInit,OnDestroy {
   }
   ngAfterViewInit(){
     this.fileService.getFile()
-    this.apiServie.on("file/get").pipe(takeUntil(this.destroyed$)).subscribe(data=>{this.files=data['files'],console.log(data);
+    this.apiServie.on("file/get").pipe(takeUntil(this.destroyed$)).subscribe(data=>{this.files=data['files']
     
     })
     
@@ -47,9 +47,8 @@ export class SendfileinchatComponent implements OnInit,AfterViewInit,OnDestroy {
   sendFile(){
     this.userId=+this.route.snapshot.queryParams.userId;
     this.groupId=+this.route.snapshot.queryParams.groupId;
-    this.messageService.sendFile(this.userId,this.fileId,this.type)
+    this.messageService.sendFile(this.userId,this.fileId,this.type.toLowerCase())
     this.activeModal.close()
-    
   }
  
   deleteFile(){

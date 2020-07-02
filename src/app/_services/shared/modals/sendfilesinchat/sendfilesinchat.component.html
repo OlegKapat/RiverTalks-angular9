@@ -3,7 +3,7 @@
 <div>
     <ul>
         <li (click)="selectFile(file.url,file.id,i,file.type)" *ngFor="let file of files; let i=index"    >
-            <img [src]="file.url" [class.active]="selectedIndex === i">
+            <img [src]="file['url']" [class.active]="selectedIndex === i">
         </li>
     </ul>
 </div>
@@ -12,4 +12,3 @@
     <button mat-raised-button color="primary" (click)="deleteFile()">Delete</button>
     <button mat-raised-button color="primary" (click)="activeModal.close('Close')">Cancel</button>
 </div>
-

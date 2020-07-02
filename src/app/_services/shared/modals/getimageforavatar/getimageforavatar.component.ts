@@ -46,7 +46,7 @@ export class GetimageforavatarComponent implements OnInit {
     this.groupService.sendAvatar(this.image,this.type).subscribe(data=>console.log(data))
  }
  addPhoto(){
-    this.modalService.open(GroupavatarComponent,{size:"md"})
+    this.modalService.open(GetimageforavatarComponent,{size:"md"})
     this.activeModal.close()
  }
 

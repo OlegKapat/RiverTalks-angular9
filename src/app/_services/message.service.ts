@@ -92,8 +92,15 @@ export class MessageService implements OnInit{
       })
     }
     sendFile(userId,fileId,type){
+      console.log(userId, fileId, type);
+      
       this.apiService.send({
-        method:''
+        method:"message/send",
+        to:userId,
+        attachments:[{
+        file_id:fileId,
+        type:type
+        }]
       })
     }
 }

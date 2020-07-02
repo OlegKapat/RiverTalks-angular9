@@ -26,7 +26,6 @@ import { LeavegroupComponent } from './leavegroup/leavegroup.component';
 import { CleargroupchatComponent } from './cleargroupchat/cleargroupchat.component';
 import { DeletemessageComponent } from './deletemessage/deletemessage.component';
 import { UseringroupPipe } from '../pipes/useringroup.pipe';
-
 import { GroupavatarComponent } from './groupavatar/groupavatar.component';
 import { DeletegroupComponent } from './deletegroup/deletegroup.component';
 import { AddmembertogroupComponent } from './addmembertogroup/addmembertogroup.component';
@@ -36,6 +35,9 @@ import { EditusernameComponent } from './editusername/editusername.component';
 import { EditemailComponent } from './editemail/editemail.component';
 import { EditphoneComponent } from './editphone/editphone.component';
 import { GetimageforavatarComponent } from './getimageforavatar/getimageforavatar.component';
+
+import { SendfilesinchatComponent } from './sendfilesinchat/sendfilesinchat.component';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +65,7 @@ import { GetimageforavatarComponent } from './getimageforavatar/getimageforavata
                  CleargroupchatComponent,
                  DeletemessageComponent,
                  UseringroupPipe,
-                
+                 SendfilesinchatComponent,
                  GroupavatarComponent,
                  DeletegroupComponent,
                  AddmembertogroupComponent,
@@ -73,7 +75,8 @@ import { GetimageforavatarComponent } from './getimageforavatar/getimageforavata
                  EditusernameComponent,
                  EditemailComponent,
                  EditphoneComponent,
-                 GetimageforavatarComponent
+                 GetimageforavatarComponent,
+                 SendfilesinchatComponent
 
   ],
   imports: [

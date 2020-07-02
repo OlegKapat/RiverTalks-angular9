@@ -42,11 +42,14 @@
               <img [src]="initialAvatarImage" />
             </ng-template>
           </a>
-          <span class="name" style="color: black;">{{ user["name"] }}</span>
-          <div class="time">
-            <i>Last visit {{ user["updated"] | date: "hh:mm" }}</i>
+          <span class="name" style="color: black;"
+            >{{ user["name"] }}
+            <i class="time"
+              >Last visit {{ user["updated"] | date: "hh:mm" }}</i
+            ></span
+          >
           </div>
-        </div>
+        
       </li>
     </ul>
   </div>

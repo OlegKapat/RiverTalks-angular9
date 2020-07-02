@@ -68,7 +68,9 @@ export class GroupService implements OnInit{
 
         })
     }
-    inviteGroup(userId,groupId){
+    inviteGroup(groupId,userId){
+        console.log(userId + "" + groupId);
+        
         this.apiService.send({
             method:"group/invite",
             id:groupId,

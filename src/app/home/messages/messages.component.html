@@ -6,10 +6,11 @@
             <div class="item" >
             <div>
                <i (mouseenter)="messageToTransform(text.id,text.text)"  (contextmenu)="getMessage(text.id,$event,text.text)"  *ngIf="text.to==userId || groupId" class="left"> <p class="text">{{ text.text}}</p> <span class="time">{{text.updated | date:'hh:mm' }} 
-                   <i *ngIf="text.status_text=='new';else done_all" class="material-icons">done </i><ng-template #done_all ><i class="material-icons">done_all</i></ng-template></span></i>
+                   <i *ngIf="text.status_text=='new';else done_all" class="material-icons">done </i><ng-template #done_all ><i class="material-icons">done_all</i></ng-template></span> <img [src]="text.attachments.file_id"></i>
+                   
             </div>
             <div >
-                <i *ngIf="text.from==userId" class="right"> <p class="text">{{ text.text}}</p> <span class="time">{{text.updated | date:'hh:mm' }}</span></i> 
+                <i *ngIf="text.from==userId" class="right"> <p class="text">{{ text.text}}</p> <span class="time">{{text.updated | date:'hh:mm' }}</span> <img  [src]="text.attachments.file_id"></i> 
             </div>
         </div>
     </span>

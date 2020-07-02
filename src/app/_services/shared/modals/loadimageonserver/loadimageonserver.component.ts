@@ -4,7 +4,7 @@ import { Subject } from "rxjs";
 import { AvatarserviceService } from "src/app/_services/avatarservice.service";
 import { NgbModal, NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { GroupavatarComponent } from "../groupavatar/groupavatar.component";
-import { SendfileinchatComponent } from '../sendfileinchat/sendfileinchat.component';
+import { SendfilesinchatComponent } from "../sendfilesinchat/sendfilesinchat.component";
 
 @Component({
   selector: "app-loadimageonserver",
@@ -36,13 +36,12 @@ export class LoadimageonserverComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(file);
   }
   uploadFile() {
-    this.avatarService
-      .sendFile(this.image, this.type)
-      // .pipe(takeUntil(this.destroyed$))
-      // .subscribe((data) => console.log(data));
+    this.avatarService.sendFile(this.image, this.type);
+    // .pipe(takeUntil(this.destroyed$))
+    // .subscribe((data) => console.log(data));
   }
   addFile() {
-    this.modalService.open(SendfileinchatComponent, { size: "md" });
+    this.modalService.open(SendfilesinchatComponent, { size: "md" });
     this.activeModal.close();
   }
   ngOnDestroy() {

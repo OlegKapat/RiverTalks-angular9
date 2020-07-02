@@ -65,13 +65,15 @@ li {
   float: right;
   padding: 10px;
   margin-top: 10px;
-  color: rgb(163, 159, 159)
+  color: rgb(163, 159, 159);
+  font-size: 12px;
+  
 }
 
-.time i {
+.time span {
   color: #a39f9f;
   font-weight: 100;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .active {

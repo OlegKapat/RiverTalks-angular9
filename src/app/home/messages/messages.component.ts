@@ -35,6 +35,7 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() messagefrom;
   @Input() messagetext: string;
   @Output() messageText = new EventEmitter<string>();
+  somevalue:string;
 
   constructor(
     private messageService: MessageService,
@@ -61,6 +62,9 @@ export class MessagesComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
     this.allmessages$ = this.apiService.on<Message[]>("message/get");
+    this.allmessages$.subscribe(data=>{this.somevalue=data['messages'][4]['attachments'][0]['file_id'],console.log(this.somevalue)}
+    
+    )
   }
 
   public removeText(index: number): void {
